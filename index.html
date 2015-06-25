@@ -1,45 +1,45 @@
 <!doctype html>
 <html lang="en" ng-app="cakeOrderForm">
 <head>
-	<!--<base href="/index.html" />-->
-	<meta charset="utf-8">
-	<title>Order Form</title>
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--<base href="/index.html" />-->
+    <meta charset="utf-8">
+    <title>Order Form</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-	<!--<link rel="stylesheet" href="">-->
+    <!--<link rel="stylesheet" href="">-->
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-messages.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-aria.min.js"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
-	<script src="/js/app/app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
+    <script src="/js/app/app.js"></script>
 
-	<script type="text/javascript">
-		angular.element(document.getElementsByTagName('head'))
-				.append(angular.element('<base href="' + window.location.pathname + '" />'));
-	</script>
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head'))
+                .append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
 </head>
 <body ng-controller="AppCtrl as app" layout="column" layout-fill>
 <md-toolbar>
-	<div class="md-toolbar-tools">
-		<h3>
-			<span>Cakes by Ranelle Order Form</span>
-		</h3>
-		<span flex></span>
-		<md-button class="md-icon-button" aria-label="Email">
-			<i class="material-icons md-36 ">email</i>
-		</md-button>
-		<md-button class="md-icon-button" aria-label="Print">
-			<i class="material-icons md-36 ">print</i>
-		</md-button>
-	</div>
+    <div class="md-toolbar-tools">
+        <h3>
+            <span>Cakes by Ranelle Order Form</span>
+        </h3>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="Email">
+            <i class="material-icons md-36 ">email</i>
+        </md-button>
+        <md-button class="md-icon-button" aria-label="Print">
+            <i class="material-icons md-36 ">print</i>
+        </md-button>
+    </div>
 </md-toolbar>
 <md-content>
-	<div ng-view></div>
+    <div ng-view></div>
 </md-content>
 
 </body>
