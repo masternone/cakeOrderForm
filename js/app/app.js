@@ -17,7 +17,7 @@
     function PayPalIcon(){
         return {
             restrict: 'A',
-            templateUrl: './partials/_paypal.html'
+            templateUrl: './partials/paypal.html'
         }
     }
 
@@ -81,12 +81,12 @@
     function AppConfig($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: './partials/_form.html',
+                templateUrl: './partials/form.html',
                 controller: 'FormCtrl',
                 controllerAs: 'form'
             })
             .when('Form/:Form/det', {
-                templateUrl: './partials/_printout.html',
+                templateUrl: './partials/printout.html',
                 controller: 'PrintCtrl',
                 controllerAs: 'print'
             })
