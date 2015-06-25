@@ -6,7 +6,7 @@
                     <label>First Name</label>
                     <input name="firstName" ng-model="form.firstName" required minlength="3" md-maxlength="30">
                     <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
@@ -15,7 +15,7 @@
                     <label>Last Name</label>
                     <input name="lastName" ng-model="form.lastName" required minlength="3" md-maxlength="30">
                     <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
@@ -24,7 +24,7 @@
                     <label>Email</label>
                     <input name="email" ng-model="form.email" type="email" required>
                     <div ng-messages="orderForm.email.$error" ng-show="orderForm.email.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
@@ -33,7 +33,7 @@
                     <label>Address One</label>
                     <input name="addressOne" ng-model="form.addressOne" required minlength="3" md-maxlength="30">
                     <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
@@ -48,7 +48,7 @@
                     <label>City</label>
                     <input name="city" ng-model="form.city" required minlength="3" md-maxlength="60">
                     <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
@@ -58,7 +58,7 @@
                         <md-option ng-repeat="state in form.states" value="{{state.abbreviation}}">{{state.abbreviation}}</md-option>
                     </md-select>
                     <div ng-messages="orderForm.state.$error" ng-show="orderForm.state.$dirty">
-                            <div ng-messages-include="./partials/_errors.html"></div>
+                            <div ng-messages-include="./partials/errors.html"></div>
                         </div>
                 </md-input-container>
             </md-grid-tile>
@@ -67,7 +67,7 @@
                     <label>Zip Code</label>
                     <input name="zipcode" ng-model="form.zipcode" required minlength="5" max="5">
                     <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
@@ -86,7 +86,7 @@
                         </md-radio-button>
                     </md-radio-group>
                     <div ng-messages="orderForm.payment.$error" ng-show="orderForm.payment.$dirty">
-                        <div ng-messages-include="./partials/_errors.html"></div>
+                        <div ng-messages-include="./partials/errors.html"></div>
                     </div>
                 </md-input-container>
             </md-grid-tile>
