@@ -1,0 +1,95 @@
+<form name="orderForm" novalidate>
+    <md-content layout-padding>
+        <md-grid-list md-cols="60" md-row-height="60px" md-gutter="16px">
+            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>First Name</label>
+                    <input name="firstName" ng-model="form.firstName" required minlength="3" md-maxlength="30">
+                    <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>Last Name</label>
+                    <input name="lastName" ng-model="form.lastName" required minlength="3" md-maxlength="30">
+                    <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>Email</label>
+                    <input name="email" ng-model="form.email" type="email" required>
+                    <div ng-messages="orderForm.email.$error" ng-show="orderForm.email.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="30" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>Address One</label>
+                    <input name="addressOne" ng-model="form.addressOne" required minlength="3" md-maxlength="30">
+                    <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="30" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>Address Two</label>
+                    <input name="addressTwo" ng-model="form.addressTwo">
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>City</label>
+                    <input name="city" ng-model="form.city" required minlength="3" md-maxlength="60">
+                    <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <md-select placeholder="State" name="state" ng-model="form.state" required>
+                        <md-option ng-repeat="state in form.states" value="{{state.abbreviation}}">{{state.abbreviation}}</md-option>
+                    </md-select>
+                    <div ng-messages="orderForm.state.$error" ng-show="orderForm.state.$dirty">
+                            <div ng-messages-include="./partials/_errors.html"></div>
+                        </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+                <md-input-container flex="100">
+                    <label>Zip Code</label>
+                    <input name="zipcode" ng-model="form.zipcode" required minlength="5" max="5">
+                    <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+            <md-grid-tile md-colspan="60">
+                <md-input-container flex="100" layout="row" layout-align="start center">
+                    <div class="label">Payment Mehod</div>
+                    <md-radio-group ng-model="form.payment" layout="row" layout-align="start center" class="md-primary" required>
+                        <md-radio-button value="Cash" aria-label="Cash">
+                            Cash
+                        </md-radio-button>
+                        <md-radio-button value="Check" aria-label="Check">
+                            Check
+                        </md-radio-button>
+                        <md-radio-button value="PayPal" aria-label="PayPal">
+                            <div Pay-Pal-Icon></div>
+                        </md-radio-button>
+                    </md-radio-group>
+                    <div ng-messages="orderForm.payment.$error" ng-show="orderForm.payment.$dirty">
+                        <div ng-messages-include="./partials/_errors.html"></div>
+                    </div>
+                </md-input-container>
+            </md-grid-tile>
+        </md-grid-list>
+    </md-content>
+</form>
