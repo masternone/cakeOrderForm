@@ -65,7 +65,7 @@
             <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>Zip Code</label>
-                    <input name="zipcode" ng-model="form.zipcode" required minlength="5" max="5">
+                    <input name="zipcode" ng-model="form.zipcode" required zipcode minlength="5" md-maxlength="10">
                     <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>

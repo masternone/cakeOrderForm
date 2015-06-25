@@ -2,6 +2,8 @@
 
     'use strict';
 
+    var ZIPCODE_REGEXP = /^\d{5}(\-\d{4})?$/;
+
     angular.module('cakeOrderForm', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngMaterial'])
         .config(['$routeProvider', '$locationProvider', AppConfig])
         .controller('AppCtrl', ['$route', '$routeParams', '$location', AppCtrl])
@@ -11,6 +13,7 @@
         .factory('CakeFlavors', CakeFlavors)
         .factory('FrostingFlavors', FrostingFlavors)
         .factory('LayerSizes',LayerSizes)
+        .directive('zipcode', zipcode)
         .directive('payPalIcon', PayPalIcon)
         ;
 
@@ -20,6 +23,28 @@
             templateUrl: './partials/paypal.html'
         }
     }
+
+    function zipcode() {
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl) {
+                ctrl.$validators.zipcode = function(modelValue, viewValue) {
+                    if (ctrl.$isEmpty(modelValue)) {
+                      // consider empty models to be valid
+                      return true;
+                    }
+    
+                    if(ZIPCODE_REGEXP.test(viewValue)) {
+                      // it is valid
+                      return true;
+                    }
+            
+                    // it is invalid
+                    return false;
+                };
+            }
+        };
+    };
 
     function LayerSizes(){
         var LayerSizes = {};
