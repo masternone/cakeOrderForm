@@ -71,8 +71,8 @@
                     </div>
                 </md-input-container>
             </md-grid-tile>
-            <md-grid-tile md-colspan="60">
-                <md-input-container flex="100" layout="row" layout-align="start center">
+            <md-grid-tile md-colspan="60" md-rowspan-gt-sm="1" md-rowspan-sm="2">
+                <md-input-container flex="100" layout-gt-sm="row" layout-sm="column" layout-align="start center">
                     <div class="label">Payment Mehod</div>
                     <md-radio-group ng-model="form.payment" layout="row" layout-align="start center" class="md-primary" required>
                         <md-radio-button value="Cash" aria-label="Cash">
