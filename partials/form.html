@@ -52,7 +52,7 @@
                     </div>
                 </md-input-container>
             </md-grid-tile>
-            <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
+            <md-grid-tile id="state" md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <md-select placeholder="State" name="state" ng-model="form.state" required>
                         <md-option ng-repeat="state in form.states" value="{{state.abbreviation}}">{{state.abbreviation}}</md-option>
@@ -71,17 +71,17 @@
                     </div>
                 </md-input-container>
             </md-grid-tile>
-            <md-grid-tile md-colspan="60" md-rowspan-gt-sm="1" md-rowspan-sm="2">
+            <md-grid-tile md-colspan="60" md-rowspan-gt-sm="1" md-rowspan-sm="4">
                 <md-input-container flex="100" layout-gt-sm="row" layout-sm="column" layout-align="start center">
                     <div class="label">Payment Mehod</div>
-                    <md-radio-group ng-model="form.payment" layout="row" layout-align="start center" class="md-primary" required>
-                        <md-radio-button value="Cash" aria-label="Cash">
+                    <md-radio-group ng-model="form.payment" layout="row" layout-align="start center" layout-wrap class="md-primary" required>
+                        <md-radio-button value="Cash" aria-label="Cash" flex-sm="50">
                             Cash
                         </md-radio-button>
-                        <md-radio-button value="Check" aria-label="Check">
+                        <md-radio-button value="Check" aria-label="Check" flex-sm="50">
                             Check
                         </md-radio-button>
-                        <md-radio-button value="PayPal" aria-label="PayPal">
+                        <md-radio-button value="PayPal" aria-label="PayPal" flex-sm="100">
                             <div Pay-Pal-Icon></div>
                         </md-radio-button>
                     </md-radio-group>
