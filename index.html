@@ -6,8 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Order Form</title>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./css/app.css">
 
     <!--<link rel="stylesheet" href="">-->
 
@@ -25,7 +26,7 @@
                 .append(angular.element('<base href="' + window.location.pathname + '" />'));
     </script>
 </head>
-<body ng-controller="AppCtrl as app" layout="column" layout-fill>
+<body ng-controller="AppCtrl as app">
 <md-toolbar>
     <div class="md-toolbar-tools">
         <h3>
@@ -40,8 +41,8 @@
         </md-button>
     </div>
 </md-toolbar>
-<md-content layout="column">
-    <div ng-view flex="100"></div>
+<md-content>
+    <div ng-view></div>
 </md-content>
 
 </body>

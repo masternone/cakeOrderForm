@@ -1,0 +1,9 @@
+md-grid-list md-grid-tile{
+    overflow: hidden;
+}
+md-input-container .md-char-counter{
+    right: 4px;
+}
+[value="PayPal"] .md-label{
+    margin-top: 15px;
+}
