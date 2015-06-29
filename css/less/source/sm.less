@@ -1,15 +1,27 @@
-md-grid-tile#state md-input-container{
-    margin-top: 16px;
+md-toolbar{
+    position: fixed;
 }
-md-grid-tile#state md-input-container md-select-label {
-    min-width: 100%;
+#main{
+    margin: 64px 0 0;
 }
-md-grid-list md-grid-tile{
-    overflow: hidden;
-}
-md-input-container .md-char-counter{
-    bottom: 3px;
-    right: 4px;
+md-grid-list{
+    md-grid-tile{
+        overflow: hidden;
+        md-input-container{
+            .md-char-counter{
+                bottom: 3px;
+                right: 4px;
+            }
+        }
+        &#state{
+            md-input-container{
+                margin-top: 16px;
+                md-select-label {
+                    min-width: 100%;
+                }
+            }
+        }
+    }
 }
 [value="PayPal"]{
     margin-top: -5px;

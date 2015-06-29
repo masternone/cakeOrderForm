@@ -44,7 +44,7 @@
                 };
             }
         };
-    };
+    }
 
     function LayerSizes(){
         var LayerSizes = {};
@@ -122,7 +122,7 @@
         //$locationProvider.html5Mode(true);
     }
 
-    function AppCtrl($route, $routeParams, $location) {
+    function AppCtrl($route, $routeParams, $location, $mdThemingProvider) {
         //this.$route = $route;
         //this.$location = $location;
         //this.$routeParams = $routeParams;
