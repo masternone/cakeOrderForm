@@ -1,0 +1,32 @@
+/* This file will control the order and flow of the css */
+
+@import "./source/constants";
+@import "./source/all";
+@import "./source/md-size";
+
+/* small devices (small phones, @small and up */
+@size: sm;
+.all( @size );
+@import "./source/sm";
+
+/* Mediun devices (large phones, tablets, @medium and up) */
+@media( min-width: @medium ){
+	@size: md;
+	.all( @size );
+	@import "./source/md";
+}
+
+/* Large devices (desktops, @large and up) */
+@media( min-width: @large ){
+	@size: lg;
+	.all( @size );
+	@import "./source/lg";
+}
+
+
+/* Extra Large devices (extra large desktops, @xLarge and up) */
+@media( min-width: @xLarge ){
+	@size: xl;
+	.all( @size );
+	@import "./source/xl";
+}
