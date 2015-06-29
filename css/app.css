@@ -1,0 +1,33 @@
+/* This file will control the order and flow of the css */
+/** This section will define the break points sizes used in the code **/
+/* small devices (small phones, @small and up */
+md-grid-tile#state md-input-container {
+  margin-top: 16px;
+}
+md-grid-tile#state md-input-container md-select-label {
+  min-width: 100%;
+}
+md-grid-list md-grid-tile {
+  overflow: hidden;
+}
+md-input-container .md-char-counter {
+  bottom: 3px;
+  right: 4px;
+}
+[value="PayPal"] {
+  margin-top: -5px;
+}
+[value="PayPal"] .md-label {
+  margin-top: 0;
+}
+/* Mediun devices (large phones, tablets, @medium and up) */
+@media (min-width: 600px) {
+  [value="PayPal"] {
+    margin-top: 15px;
+  }
+  [value="PayPal"] .md-label {
+    margin-top: 15px;
+  }
+}
+/* Large devices (desktops, @large and up) */
+/* Extra Large devices (extra large desktops, @xLarge and up) */
