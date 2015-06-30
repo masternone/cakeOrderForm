@@ -7,13 +7,14 @@
     angular.module('cakeOrderForm', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngMaterial'])
         .config(['$routeProvider', '$locationProvider', AppConfig])
         .controller('AppCtrl', ['$route', '$routeParams', '$location', AppCtrl])
-        .controller('FormCtrl', ['$routeParams', 'StateFactory', 'CakeFlavors', 'FrostingFlavors', 'LayerSizes', FormCtrl])
-        .controller('PrintCtrl', ['$routeParams', PrintCtrl])
+        .controller('OrderFormCtrl', ['$routeParams', 'OrderFormData','StateFactory', 'CakeFlavors', 'FrostingFlavors', 'LayerSizes', OrderFormCtrl])
+        .controller('PrintCtrl', ['$routeParams','OrderFormData', PrintCtrl])
+        .factory('OrderFormData', OrderFormData)
         .factory('StateFactory', ['$http', StateFactory])
         .factory('CakeFlavors', CakeFlavors)
         .factory('FrostingFlavors', FrostingFlavors)
         .factory('LayerSizes',LayerSizes)
-        .directive('zipcode', zipcode)
+        .directive('zipcodeValid', zipcodeValid)
         .directive('payPalIcon', PayPalIcon)
         ;
 
@@ -24,7 +25,7 @@
         }
     }
 
-    function zipcode() {
+    function zipcodeValid() {
         return {
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
@@ -103,15 +104,38 @@
         return StateFactory;
     }
 
+    function OrderFormData(){
+        var data = {};
+        var OrderFormData = {
+            getFirstName  : function(){ return data.firstName; },
+            setFirstName  : function(firstName){ data.firstName = firstName; },
+            getLastName   : function(){ return data.lastName; },
+            setLastName   : function(lastName){ data.lastName = lastName; },
+            getEmail      : function(){ return data.email; },
+            setEmail      : function(email){ data.lastName = email; },
+            getAddressOne : function(){ return data.addressOne; },
+            setAddressOne : function(addressOne){ data.addressOne = addressOne; },
+            getAddressTwo : function(){ return data.addressTwo; },
+            setAddressTwo : function(addressTwo){ data.addressTwo = addressTwo; },
+            getCity       : function(){ return data.city; },
+            setCity       : function(city){ data.city = city; },
+            getState      : function(){ return data.state; },
+            setState      : function(state){ data.state = state; },
+            getZipcode    : function(){ return data.zipcode; },
+            setZipcode    : function(zipcode){ data.zipcode = zipcode; }
+        }
+        return OrderFormData;
+    }
+
     function AppConfig($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: './partials/form.html',
-                controller: 'FormCtrl',
-                controllerAs: 'form'
+                controller: 'OrderFormCtrl',
+                controllerAs: 'order'
             })
-            .when('Form/:Form/det', {
-                templateUrl: './partials/printout.html',
+            .when('/print', {
+                templateUrl: './partials/print.html',
                 controller: 'PrintCtrl',
                 controllerAs: 'print'
             })
@@ -128,8 +152,7 @@
         //this.$routeParams = $routeParams;
     }
 
-    function FormCtrl($routeParams, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes) {
-        //this.name = "FormCtrl";
+    function OrderFormCtrl($routeParams, OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes) {
         //this.params = $routeParams;
         this.layers = [];
         this.cakeFlavors = CakeFlavors.getFlavors();
@@ -138,18 +161,31 @@
         var self = this;
         StateFactory.getStates()
             .success(function(States){
-                console.log('States', States);
                 self.states = States;
                 self.state = 'MI'
             });
+        this.setFirstName = function(){ OrderFormData.setFirstName(this.firstName); }
+        this.setLastName = function(){ OrderFormData.setLastName(this.lastName); }
+        this.setEmail = function(){ OrderFormData.setEmail(this.email); }
+        this.setAddressOne = function(){ OrderFormData.setAddressOne(this.addressOne); }
+        this.setAddressTwo = function(){ OrderFormData.setAddressTwo(this.addressTwo); }
+        this.setCity = function(){ OrderFormData.setCity(this.city); }
+        this.setState = function(){ OrderFormData.setState(this.state); }
+        this.setZipcode = function(){ OrderFormData.setZipcode(this.zipcode); }
         this.addLayer = function(){
             
         }
     }
 
-    function PrintCtrl($routeParams) {
-        //this.name = "PrintCtrl";
-        this.params = $routeParams;
-
+    function PrintCtrl($routeParams, OrderFormData) {
+        //this.params = $routeParams;
+        this.firstName  = OrderFormData.getFirstName();
+        this.lastName   = OrderFormData.getLastName();
+        this.email      = OrderFormData.getEmail();
+        this.addressOne = OrderFormData.getAddressOne();
+        this.addressTwo = OrderFormData.getAddressTwo();
+        this.city       = OrderFormData.getCity();
+        this.state      = OrderFormData.getState();
+        this.zipcode    = OrderFormData.getZipcode();
     }
 })(window.angular);

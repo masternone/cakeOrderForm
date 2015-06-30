@@ -1,11 +1,30 @@
 /* This file will control the order and flow of the css */
 /** This section will define the break points sizes used in the code **/
 /* small devices (small phones, @small and up */
+.md-sm-32px-1 {
+  font-size: 32px;
+  height: 32px;
+  line-height: 1;
+  width: 32px;
+}
+.md-sm-32px-2 {
+  font-size: 32px;
+  height: 64px;
+  line-height: 2;
+  width: 64px;
+}
 md-toolbar {
+  left: 0;
   position: fixed;
+  top: 0;
 }
 #main {
   margin: 64px 0 0;
+}
+#addLayerWrapper {
+  position: fixed;
+  right: 40px;
+  top: 30px;
 }
 md-grid-list md-grid-tile {
   overflow: hidden;
@@ -28,6 +47,18 @@ md-grid-list md-grid-tile#state md-input-container md-select-label {
 }
 /* Mediun devices (large phones, tablets, @medium and up) */
 @media (min-width: 600px) {
+  .md-md-32px-1 {
+    font-size: 32px;
+    height: 32px;
+    line-height: 1;
+    width: 32px;
+  }
+  .md-md-32px-2 {
+    font-size: 32px;
+    height: 64px;
+    line-height: 2;
+    width: 64px;
+  }
   [value="PayPal"] {
     margin-top: 15px;
   }
@@ -36,4 +67,37 @@ md-grid-list md-grid-tile#state md-input-container md-select-label {
   }
 }
 /* Large devices (desktops, @large and up) */
+@media (min-width: 960px) {
+  .md-lg-32px-1 {
+    font-size: 32px;
+    height: 32px;
+    line-height: 1;
+    width: 32px;
+  }
+  .md-lg-32px-2 {
+    font-size: 32px;
+    height: 64px;
+    line-height: 2;
+    width: 64px;
+  }
+}
 /* Extra Large devices (extra large desktops, @xLarge and up) */
+@media (min-width: 1200px) {
+  .md-xl-32px-1 {
+    font-size: 32px;
+    height: 32px;
+    line-height: 1;
+    width: 32px;
+  }
+  .md-xl-32px-2 {
+    font-size: 32px;
+    height: 64px;
+    line-height: 2;
+    width: 64px;
+  }
+}
+@media print {
+  .no-print {
+    display: none;
+  }
+}

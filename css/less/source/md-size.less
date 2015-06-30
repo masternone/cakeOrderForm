@@ -1,7 +1,8 @@
-.md-size-func(@size, @value){
-  .md-@{size}-@{value}{
+.md-size-func(@size, @value, @multiplier){
+  .md-@{size}-@{value}-@{multiplier}{
     font-size: @value;
-    height: @value;
-    width: @value;
+    height: @value * @multiplier;
+    line-height: @multiplier;
+    width: @value * @multiplier;
   }
 }

@@ -1,6 +1,6 @@
-<md-content>
-    <md-button id="" class="md-fab md-mini md-warn" aria-label="Add" layout="column" layout-align="center center" style="display: flex;">
-        <i class="material-icons md-36 ">add</i>
+<md-content id="addLayerWrapper">
+    <md-button id="addLayer" class="md-fab md-warn" aria-label="Add Layer" layout="column" title="Add Layer" layout-align="center center" style="display: flex;">
+        <i class="material-icons md-sm-32px-1">add</i>
     </md-button>
 </md-content>
 <form name="orderForm" novalidate>
@@ -9,7 +9,7 @@
             <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>First Name</label>
-                    <input name="firstName" ng-model="form.firstName" required minlength="3" md-maxlength="30">
+                    <input name="firstName" ng-model="order.firstName" required minlength="3" md-maxlength="30" ng-blur="order.setFirstName();">
                     <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>
@@ -18,7 +18,7 @@
             <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>Last Name</label>
-                    <input name="lastName" ng-model="form.lastName" required minlength="3" md-maxlength="30">
+                    <input name="lastName" ng-model="order.lastName" required minlength="3" md-maxlength="30" ng-blur="order.setLastName();">
                     <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>
@@ -27,7 +27,7 @@
             <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>Email</label>
-                    <input name="email" ng-model="form.email" type="email" required>
+                    <input name="email" ng-model="order.email" type="email" required ng-blur="order.setEmailName();">
                     <div ng-messages="orderForm.email.$error" ng-show="orderForm.email.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>
@@ -36,7 +36,7 @@
             <md-grid-tile md-colspan-gt-sm="30" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>Address One</label>
-                    <input name="addressOne" ng-model="form.addressOne" required minlength="3" md-maxlength="30">
+                    <input name="addressOne" ng-model="order.addressOne" required minlength="3" md-maxlength="30" ng-blur="order.setAddressOne();">
                     <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>
@@ -45,13 +45,13 @@
             <md-grid-tile md-colspan-gt-sm="30" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>Address Two</label>
-                    <input name="addressTwo" ng-model="form.addressTwo">
+                    <input name="addressTwo" ng-model="order.addressTwo" ng-blur="order.setAddressTwo();">
                 </md-input-container>
             </md-grid-tile>
             <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>City</label>
-                    <input name="city" ng-model="form.city" required minlength="3" md-maxlength="60">
+                    <input name="city" ng-model="order.city" required minlength="3" md-maxlength="60" ng-blur="order.setCity();">
                     <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>
@@ -59,7 +59,7 @@
             </md-grid-tile>
             <md-grid-tile id="state" md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
-                    <md-select placeholder="State" name="state" ng-model="form.state" required>
+                    <md-select placeholder="State" name="state" ng-model="order.state" required ng-blur="order.setState();">
                         <md-option ng-repeat="state in form.states" value="{{state.abbreviation}}">{{state.abbreviation}}</md-option>
                     </md-select>
                     <div ng-messages="orderForm.state.$error" ng-show="orderForm.state.$dirty">
@@ -70,7 +70,7 @@
             <md-grid-tile md-colspan-gt-sm="20" md-colspan-sm="60">
                 <md-input-container flex="100">
                     <label>Zip Code</label>
-                    <input name="zipcode" ng-model="form.zipcode" required zipcode minlength="5" md-maxlength="10">
+                    <input name="zipcode" ng-model="order.zipcode" required zipcodeValid minlength="5" md-maxlength="10" ng-blur="order.setZipcode();">
                     <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
                         <div ng-messages-include="./partials/errors.html"></div>
                     </div>
@@ -79,7 +79,7 @@
             <md-grid-tile md-colspan="60" md-rowspan-gt-sm="1" md-rowspan-sm="4">
                 <md-input-container flex="100" layout-gt-sm="row" layout-sm="column" layout-align="start center">
                     <div class="label">Payment Mehod</div>
-                    <md-radio-group ng-model="form.payment" layout="row" layout-align="start center" layout-wrap class="md-primary" required>
+                    <md-radio-group ng-model="order.payment" layout="row" layout-align="start center" layout-wrap class="md-primary" required>
                         <md-radio-button value="Cash" aria-label="Cash" flex-sm="50">
                             Cash
                         </md-radio-button>
