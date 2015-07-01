@@ -11,24 +11,17 @@ md-toolbar{
   right: 40px;
   top: 30px;
 }
-md-grid-list{
-    md-grid-tile{
-        overflow: hidden;
-        md-input-container{
-            .md-char-counter{
-                bottom: 3px;
-                right: 4px;
-            }
-        }
-        &#state{
-            md-input-container{
-                margin-top: 16px;
-                md-select-label {
-                    min-width: 100%;
-                }
-            }
-        }
+md-input-container{
+  .md-char-counter{
+      bottom: 3px;
+      right: 4px;
+  }
+  md-select {
+    padding-bottom: 0;
+    .md-select-label {
+      min-width: 100%;
     }
+  }
 }
 [value="PayPal"]{
     margin-top: -5px;

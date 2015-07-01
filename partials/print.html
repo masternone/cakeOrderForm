@@ -1,15 +1,17 @@
-<md-content layout="row" layout-padding>
-    {{print.addressOne}}
-</md-content>
-<md-content layout="row" layout-padding ng-show="print.addressTwo">
-    {{print.addressTwo}}
-</md-content>
-<md-content layout="row" layout-padding>
-    {{print.city}} {{print.state}} {{print.zipcode}}
-</md-content>
-<md-content layout="row" layout-padding>
-    {{print.firstName}} {{print.lastName}}
-</md-content>
-<md-content layout="row" layout-padding>
-    {{print.email}}
+<ng-include src="'./partials/toolbar.html'"></ng-include>
+<md-content layout="row" layout-padding layout-wrap>
+    <div flex="100">{{print.addressOne}}</div>
+    <div flex="100" ng-show="print.addressTwo">{{print.addressTwo}}</div>
+    <div flex="100">{{print.city}} {{print.states[print.state].abbreviation}} {{print.zipcode}}</div>
+    <div flex="100">{{print.firstName}} {{print.lastName}}</div>
+    <div flex="35">{{print.email}}</div>
+    <div flex="35">{{print.phoneNum}}</div>
+    <div flex="15">{{print.payment}}</div>
+    <div flex="15" ng-show="print.isPayPal();" Pay-Pal-Icon></div>
+    <div flex="100" ng-repeat="layer in print.layers">
+        <md-content layout="row" layout-padding layout-wrap>
+            <div flex="100">Layer {{$index + 1}}:</div>
+            <div flex="25" offset="15">{{print.layerSizes[layer.size].name}}</div>
+            <div flex="60">{{print.layerSizes[layer.size].cost}}</div>
+    </div>
 </md-content>

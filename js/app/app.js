@@ -2,18 +2,20 @@
 
     'use strict';
 
+    var PHONENUM_REGEXP = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
     var ZIPCODE_REGEXP = /^\d{5}(\-\d{4})?$/;
 
     angular.module('cakeOrderForm', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngMaterial'])
         .config(['$routeProvider', '$locationProvider', AppConfig])
         .controller('AppCtrl', ['$route', '$routeParams', '$location', AppCtrl])
-        .controller('OrderFormCtrl', ['$routeParams', 'OrderFormData','StateFactory', 'CakeFlavors', 'FrostingFlavors', 'LayerSizes', OrderFormCtrl])
-        .controller('PrintCtrl', ['$routeParams','OrderFormData', PrintCtrl])
+        .controller('OrderFormCtrl', ['OrderFormData','StateFactory', 'CakeFlavors', 'FrostingFlavors', 'LayerSizes', OrderFormCtrl])
+        .controller('PrintCtrl', ['OrderFormData', 'StateFactory', 'CakeFlavors', 'FrostingFlavors', 'LayerSizes', PrintCtrl])
         .factory('OrderFormData', OrderFormData)
         .factory('StateFactory', ['$http', StateFactory])
         .factory('CakeFlavors', CakeFlavors)
         .factory('FrostingFlavors', FrostingFlavors)
-        .factory('LayerSizes',LayerSizes)
+        .factory('LayerSizes', LayerSizes)
+        .directive('phoneValid', phoneValid)
         .directive('zipcodeValid', zipcodeValid)
         .directive('payPalIcon', PayPalIcon)
         ;
@@ -25,21 +27,43 @@
         }
     }
 
-    function zipcodeValid() {
+    function zipcodeValid(){
         return {
             require: 'ngModel',
             link: function(scope, elm, attrs, ctrl) {
-                ctrl.$validators.zipcode = function(modelValue, viewValue) {
-                    if (ctrl.$isEmpty(modelValue)) {
-                      // consider empty models to be valid
-                      return true;
+                ctrl.$validators.zipcode = function(modelValue, viewValue){
+                    if(ctrl.$isEmpty(modelValue)){
+                        // consider empty models to be valid
+                        return true;
                     }
-    
-                    if(ZIPCODE_REGEXP.test(viewValue)) {
-                      // it is valid
-                      return true;
+
+                    if(ZIPCODE_REGEXP.test(viewValue)){
+                        // it is valid
+                        return true;
                     }
-            
+
+                    // it is invalid
+                    return false;
+                };
+            }
+        };
+    }
+
+    function phoneValid(){
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl){
+                ctrl.$validators.phoneNum = function(modelValue, viewValue){
+                    if (ctrl.$isEmpty(modelValue)){
+                        // consider empty models to be valid
+                        return true;
+                    }
+
+                    if(PHONENUM_REGEXP.test(viewValue.replace(/\D/g, ""))){
+                        // it is valid
+                        return true;
+                    }
+
                     // it is invalid
                     return false;
                 };
@@ -106,13 +130,29 @@
 
     function OrderFormData(){
         var data = {};
+
+        // This is only being used to speed up testing
+        data.firstName  = 'Edward';
+        data.lastName   = 'Grant';
+        data.email      = 'themasternone@gmail.com';
+        data.phoneNum   = '313.799.2101'
+        data.addressOne = '18441 Delaware Ave';
+        data.addressTwo = undefined;
+        data.city       = 'RedFord';
+        data.state      = 26;
+        data.zipcode    = 48240;
+        data.payment    = 'PayPal';
+        data.layers     = [];
+
         var OrderFormData = {
             getFirstName  : function(){ return data.firstName; },
             setFirstName  : function(firstName){ data.firstName = firstName; },
             getLastName   : function(){ return data.lastName; },
             setLastName   : function(lastName){ data.lastName = lastName; },
             getEmail      : function(){ return data.email; },
-            setEmail      : function(email){ data.lastName = email; },
+            setEmail      : function(email){ data.email = email; },
+            getPhoneNum   : function(){ return data.phoneNum; },
+            setPhoneNum   : function(phoneNum){ data.phoneNum = phoneNum; },
             getAddressOne : function(){ return data.addressOne; },
             setAddressOne : function(addressOne){ data.addressOne = addressOne; },
             getAddressTwo : function(){ return data.addressTwo; },
@@ -122,7 +162,25 @@
             getState      : function(){ return data.state; },
             setState      : function(state){ data.state = state; },
             getZipcode    : function(){ return data.zipcode; },
-            setZipcode    : function(zipcode){ data.zipcode = zipcode; }
+            setZipcode    : function(zipcode){ data.zipcode = zipcode; },
+            getPayment    : function(){ return data.payment; },
+            setPayment    : function(payment){ data.payment = payment; },
+            getLayers     : function(){ return data.layers || []; },
+            setLayers     : function(layers){ data.layers = layers; },
+
+            apply         : function(self){
+                self.firstName  = OrderFormData.getFirstName();
+                self.lastName   = OrderFormData.getLastName();
+                self.email      = OrderFormData.getEmail();
+                self.phoneNum   = OrderFormData.getPhoneNum();
+                self.addressOne = OrderFormData.getAddressOne();
+                self.addressTwo = OrderFormData.getAddressTwo();
+                self.city       = OrderFormData.getCity();
+                self.state      = OrderFormData.getState();
+                self.zipcode    = OrderFormData.getZipcode();
+                self.payment    = OrderFormData.getPayment();
+                self.layers     = OrderFormData.getLayers();
+            }
         }
         return OrderFormData;
     }
@@ -152,7 +210,7 @@
         //this.$routeParams = $routeParams;
     }
 
-    function OrderFormCtrl($routeParams, OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes) {
+    function OrderFormCtrl(OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes) {
         //this.params = $routeParams;
         this.layers = [];
         this.cakeFlavors = CakeFlavors.getFlavors();
@@ -162,30 +220,47 @@
         StateFactory.getStates()
             .success(function(States){
                 self.states = States;
-                self.state = 'MI'
+                if(!self.state && self.state !== 0 )
+                    self.state = 26;
             });
-        this.setFirstName = function(){ OrderFormData.setFirstName(this.firstName); }
-        this.setLastName = function(){ OrderFormData.setLastName(this.lastName); }
-        this.setEmail = function(){ OrderFormData.setEmail(this.email); }
+        this.setFirstName  = function(){ OrderFormData.setFirstName(this.firstName); }
+        this.setLastName   = function(){ OrderFormData.setLastName(this.lastName); }
+        this.setEmail      = function(){ OrderFormData.setEmail(this.email); }
+        this.setPhoneNum   = function(){ OrderFormData.setPhoneNum(this.phoneNum); }
         this.setAddressOne = function(){ OrderFormData.setAddressOne(this.addressOne); }
         this.setAddressTwo = function(){ OrderFormData.setAddressTwo(this.addressTwo); }
-        this.setCity = function(){ OrderFormData.setCity(this.city); }
-        this.setState = function(){ OrderFormData.setState(this.state); }
-        this.setZipcode = function(){ OrderFormData.setZipcode(this.zipcode); }
-        this.addLayer = function(){
-            
+        this.setCity       = function(){ OrderFormData.setCity(this.city); }
+        this.setState      = function(){ OrderFormData.setState(this.state); }
+        this.setZipcode    = function(){ OrderFormData.setZipcode(this.zipcode); }
+        this.setPayment    = function(){ OrderFormData.setPayment(this.payment); }
+        this.setLayers     = function(){ OrderFormData.setLayers(this.layers); }
+        this.addLayer      = function(){
+            console.log('inside add layer');
+            console.log('this', this);
+            console.log('self', self);
+            this.layers.push({
+                cake     : '',
+                frosting : '',
+                size     : ''
+            });
         }
+        OrderFormData.apply(this);
     }
 
-    function PrintCtrl($routeParams, OrderFormData) {
-        //this.params = $routeParams;
-        this.firstName  = OrderFormData.getFirstName();
-        this.lastName   = OrderFormData.getLastName();
-        this.email      = OrderFormData.getEmail();
-        this.addressOne = OrderFormData.getAddressOne();
-        this.addressTwo = OrderFormData.getAddressTwo();
-        this.city       = OrderFormData.getCity();
-        this.state      = OrderFormData.getState();
-        this.zipcode    = OrderFormData.getZipcode();
+    function PrintCtrl(OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes) {
+        this.cakeFlavors = CakeFlavors.getFlavors();
+        this.frostingFlavors = FrostingFlavors.getFlavors();
+        this.layerSizes = LayerSizes.getSizes();
+        this.isPayPal = function(){
+            return this.payment == 'PayPal';
+        }
+        var self = this;
+        StateFactory.getStates()
+            .success(function(States){
+                self.states = States;
+                if(!self.state && self.state !== 0 )
+                    self.state = 26;
+            });
+        OrderFormData.apply(this);
     }
 })(window.angular);
