@@ -5,6 +5,10 @@ This is a JavaScript project using Node.js and Grunt to manage the serving of
 files and the compiling of the Less. On the client side using Angular and the
 Angular Material libraries to manage the look and feel
 
+The data collected by the form is not stored for future use at the current
+time. The current plan is to not add it until all the display quirts are worked
+out.
+
 ## Setup
 
 ### Install Node.js

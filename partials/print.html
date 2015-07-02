@@ -9,9 +9,14 @@
     <div flex="15">{{print.payment}}</div>
     <div flex="15" ng-show="print.isPayPal();" Pay-Pal-Icon></div>
     <div flex="100" ng-repeat="layer in print.layers">
+        <div flex="100">Layer {{$index + 1}}:</div>
         <md-content layout="row" layout-padding layout-wrap>
-            <div flex="100">Layer {{$index + 1}}:</div>
             <div flex="25" offset="15">{{print.layerSizes[layer.size].name}}</div>
             <div flex="60">{{print.layerSizes[layer.size].cost}}</div>
+            <div flex="25" offset="15">{{print.cakeFlavors[layer.cake].name}}</div>
+            <div flex="60">{{print.cakeFlavors[layer.cake].cost}}</div>
+            <div flex="25" offset="15">{{print.frostingFlavors[layer.frosting].name}}</div>
+            <div flex="60">{{print.frostingFlavors[layer.frosting].cost}}</div>
+            <di
     </div>
 </md-content>
