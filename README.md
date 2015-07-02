@@ -13,7 +13,9 @@ To install Node.js follow the instructions on http://nodejs.org/
 
 ### Install HTTP-Server
 
-npm install http-server -g
+```shell
+$ npm install http-server -g
+```
 
 ### Install Dependencies
 
