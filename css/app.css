@@ -18,6 +18,9 @@ md-toolbar {
   position: fixed;
   top: 0;
 }
+md-toolbar > .md-toolbar-tools .md-headline {
+  width: 160px;
+}
 md-toolbar > .md-toolbar-tools > .md-button:last-child {
   margin-right: 16px;
 }
@@ -60,6 +63,9 @@ md-input-container md-select .md-select-label {
     height: 64px;
     line-height: 2;
     width: 64px;
+  }
+  md-toolbar > .md-toolbar-tools .md-headline {
+    width: auto;
   }
   [value="PayPal"] {
     margin-top: 15px;
