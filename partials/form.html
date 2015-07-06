@@ -1,7 +1,7 @@
-<ng-include src="'./partials/toolbar.html'"></ng-include>
+<ng-include src="'./partials/toolbar.html'" style="z-index: 10;"></ng-include>
 <md-content id="addLayerWrapper">
-    <md-button id="addLayer" class="md-fab md-warn" aria-label="Add Layer" layout="column" title="Add Layer" layout-align="center center" style="display: flex;" ng-click="order.addLayer();">
-        <i class="material-icons md-sm-32px-1">add</i>
+    <md-button id="addLayer" class="md-fab md-warn" aria-label="Add Layer" layout="column" title="Add Layer" layout-align="center center" ng-click="order.addLayer();">
+        <i class="material-icons md-sm-32px-1" style="margin-top: 12px;">add</i>
     </md-button>
 </md-content>
 <form name="orderForm" novalidate>
