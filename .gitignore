@@ -1,8 +1,9 @@
 # System Files
 .DS_Store
 
-# Directory used by IntelliJ
+# IntelliJ project files
 .idea
+*.iml
 
 # Logs
 logs
