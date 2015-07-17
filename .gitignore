@@ -1,6 +1,10 @@
 # System Files
 .DS_Store
 
+# IntelliJ project files
+.idea
+*.iml
+
 # Logs
 logs
 *.log
