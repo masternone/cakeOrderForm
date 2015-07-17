@@ -9,7 +9,8 @@
         <!--First Name-->
         <md-input-container flex="33" flex-sm="100">
             <label>First Name</label>
-            <input name="firstName" ng-model="order.firstName" required minlength="3" md-maxlength="30" ng-blur="order.setFirstName();">
+            <input name="firstName" ng-model="order.firstName" required minlength="3" md-maxlength="30"
+                   ng-blur="order.save();">
             <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
@@ -17,7 +18,8 @@
         <!--Last Name-->
         <md-input-container flex="33" flex-sm="100">
             <label>Last Name</label>
-            <input name="lastName" ng-model="order.lastName" required minlength="3" md-maxlength="30" ng-blur="order.setLastName();">
+            <input name="lastName" ng-model="order.lastName" required minlength="3" md-maxlength="30"
+                   ng-blur="order.save();">
             <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
@@ -27,7 +29,7 @@
         <!--Email-->
         <md-input-container flex="33" flex-sm="100">
             <label>Email</label>
-            <input name="email" ng-model="order.email" type="email" required ng-blur="order.setEmailName();">
+            <input name="email" ng-model="order.email" type="email" required ng-blur="order.save();">
             <div ng-messages="orderForm.email.$error" ng-show="orderForm.email.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
@@ -35,7 +37,7 @@
         <!--Phone Number-->
         <md-input-container flex="33" flex-sm="100">
             <label>Phone Number</label>
-            <input name="phoneNum" ng-model="order.phoneNum" type="tel" required phone-valid ng-blur="order.setPhoneNum();">
+            <input name="phoneNum" ng-model="order.phoneNum" type="tel" required phone-valid ng-blur="order.save();">
             <div ng-messages="orderForm.phoneNum.$error" ng-show="orderForm.phoneNum.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
@@ -43,7 +45,8 @@
         <!--Address One-->
         <md-input-container flex="50" flex-sm="100">
             <label>Address One</label>
-            <input name="addressOne" ng-model="order.addressOne" required minlength="3" md-maxlength="30" ng-blur="order.setAddressOne();">
+            <input name="addressOne" ng-model="order.addressOne" required minlength="3" md-maxlength="30"
+                   ng-blur="order.save();">
             <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
@@ -56,14 +59,14 @@
         <!--City-->
         <md-input-container flex="33" flex-sm="100">
             <label>City</label>
-            <input name="city" ng-model="order.city" required minlength="3" md-maxlength="60" ng-blur="order.setCity();">
+            <input name="city" ng-model="order.city" required minlength="3" md-maxlength="60" ng-blur="order.save();">
             <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </md-input-container>
         <!--State-->
         <md-input-container flex="33" flex-sm="100">
-            <md-select placeholder="State" name="state" ng-model="order.state" required ng-change="order.setState();">
+            <md-select placeholder="State" name="state" ng-model="order.state" required ng-change="order.save();">
                 <md-option ng-repeat="state in order.states" value="{{$index}}">{{state.abbreviation}}</md-option>
             </md-select>
             <div ng-messages="orderForm.state.$error" ng-show="orderForm.state.$dirty">
@@ -73,7 +76,8 @@
         <!--Zipcode-->
         <md-input-container flex="33" flex-sm="100">
             <label>Zip Code</label>
-            <input name="zipcode" ng-model="order.zipcode" required zipcode-valid minlength="5" md-maxlength="10" ng-blur="order.setZipcode();">
+            <input name="zipcode" ng-model="order.zipcode" required zipcode-valid minlength="5" md-maxlength="10"
+                   ng-blur="order.save();">
             <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
@@ -81,7 +85,8 @@
         <!--Payment Method-->
         <md-input-container flex="100" layout-gt-sm="row" layout-sm="column" layout-align="start center">
             <div class="label">Payment Method</div>
-            <md-radio-group name="payment" ng-model="order.payment" layout="row" layout-align="start center" layout-wrap class="md-primary" required ng-change="order.setPayment();">
+            <md-radio-group name="payment" ng-model="order.payment" layout="row" layout-align="start center" layout-wrap
+                            class="md-primary" required ng-change="order.save();">
                 <md-radio-button value="Cash" aria-label="Cash" flex-sm="50">
                     Cash
                 </md-radio-button>
@@ -98,7 +103,7 @@
         </md-input-container>
         <!--Size-->
         <md-input-container flex="33" flex-sm="100" ng-repeat-start="layer in order.layers" ng-form="layersRepeat">
-            <md-select placeholder="Size" name="size" ng-model="layer.size" required ng-change="order.setLayers();">
+            <md-select placeholder="Size" name="size" ng-model="layer.size" required ng-change="order.save();">
                 <md-option ng-repeat="size in order.layerSizes" value="{{$index}}">{{size.name}}</md-option>
             </md-select>
             <div ng-messages="layersRepeat.size.$error" ng-show="layersRepeat.size.$dirty">
@@ -107,7 +112,7 @@
         </md-input-container>
         <!--Cake Flavor-->
         <md-input-container flex="33" flex-sm="100">
-            <md-select placeholder="Cake Flavor" name="cake" ng-model="layer.cake" required ng-change="order.setLayers();">
+            <md-select placeholder="Cake Flavor" name="cake" ng-model="layer.cake" required ng-change="order.save();">
                 <md-option ng-repeat="cake in order.cakeFlavors" value="{{$index}}">{{cake.name}}</md-option>
             </md-select>
             <div ng-messages="layersRepeat.cake.$error" ng-show="layersRepeat.cake.$dirty">
@@ -116,7 +121,8 @@
         </md-input-container>
         <!--Frosting Flavor-->
         <md-input-container flex="33" flex-sm="100" ng-repeat-end>
-            <md-select placeholder="Frosting Flavor" name="frosting" ng-model="layer.frosting" required ng-change="order.setLayers();">
+            <md-select placeholder="Frosting Flavor" name="frosting" ng-model="layer.frosting" required
+                       ng-change="order.save();">
                 <md-option ng-repeat="frosting in order.frostingFlavors" value="{{$index}}">{{frosting.name}}</md-option>
             </md-select>
             <div ng-messages="layersRepeat.frosting.$error" ng-show="layersRepeat.frosting.$dirty">
