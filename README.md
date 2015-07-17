@@ -18,7 +18,13 @@ To install Node.js follow the instructions on http://nodejs.org/
 ### Install HTTP-Server
 
 ```shell
-$ npm install http-server -g
+$ npm install -g http-server
+```
+
+### Install Grunt CLI
+
+```shell
+npm install -g grunt-cli
 ```
 
 ### Install Dependencies
