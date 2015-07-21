@@ -12,11 +12,11 @@
         <div flex="100">Layer {{$index + 1}}:</div>
         <md-content layout="row" layout-padding layout-wrap ng-repeat="item in print.layerItems">
             <div flex="25" offset="15">{{print[item][layer[item]].name}}</div>
-            <div flex="10" class="text-right">{{print[item][layer[item]].cost}}</div>
+            <div flex="10" class="text-right">{{print[item][layer[item]].display}}</div>
             <div flex="50">&nbsp;</div>
         </md-content>
     </div>
     <div flex="40"><strong>Total:</strong></div>
-    <div flex="10" class="text-right">{{print.total}}</div>
+    <div flex="10" class="text-right">{{print.total | currency}}</div>
     <div flex="50">&nbsp;</div>
 </md-content>

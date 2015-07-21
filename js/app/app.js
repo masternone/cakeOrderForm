@@ -90,16 +90,16 @@
         var LayerSizes      = {};
         LayerSizes.getSizes = function(){
             return [
-                {"name": "6 inch round", "cost": 10},
-                {"name": "8 inch round", "cost": 14},
-                {"name": "10 inch round", "cost": 16},
-                {"name": "12 inch round", "cost": 18},
-                {"name": "14 inch round", "cost": 20},
-                {"name": "16 inch round", "cost": 22},
-                {"name": "1/8 sheet", "cost": 10},
-                {"name": "1/4 sheet", "cost": 15},
-                {"name": "1/2 sheet", "cost": 20},
-                {"name": "full sheet", "cost": 40}
+                {"name": "6 inch round", "cost": 10, "display": "$10.00"},
+                {"name": "8 inch round", "cost": 14, "display": "$14.00"},
+                {"name": "10 inch round", "cost": 16, "display": "$16.00"},
+                {"name": "12 inch round", "cost": 18, "display": "$18.00"},
+                {"name": "14 inch round", "cost": 20, "display": "$20.00"},
+                {"name": "16 inch round", "cost": 22, "display": "$22.00"},
+                {"name": "1/8 sheet", "cost": 10, "display": "$10.00"},
+                {"name": "1/4 sheet", "cost": 15, "display": "$15.00"},
+                {"name": "1/2 sheet", "cost": 20, "display": "$20.00"},
+                {"name": "full sheet", "cost": 40, "display": "$40.00"}
             ]
         };
         return LayerSizes;
@@ -109,13 +109,13 @@
         var CakeFlavors        = {};
         CakeFlavors.getFlavors = function(){
             return [
-                {"name": 'Chocolate', "cost": 0},
-                {"name": 'German Chocolate', "cost": 0},
-                {"name": 'Red Velvet', "cost": 0},
-                {"name": 'Yellow', "cost": 0},
-                {"name": 'White', "cost": 0},
-                {"name": 'Spice', "cost": 0},
-                {"name": 'Carrot', "cost": 0}
+                {"name": 'Chocolate', "cost": 0, "display": "0%"},
+                {"name": 'German Chocolate', "cost": 0, "display": "0%"},
+                {"name": 'Red Velvet', "cost": 0, "display": "0%"},
+                {"name": 'Yellow', "cost": 0, "display": "0%"},
+                {"name": 'White', "cost": 0, "display": "0%"},
+                {"name": 'Spice', "cost": 0, "display": "0%"},
+                {"name": 'Carrot', "cost": 0, "display": "0%"}
             ]
         };
         return CakeFlavors;
@@ -125,11 +125,12 @@
         var FrostingFlavors        = {};
         FrostingFlavors.getFlavors = function(){
             return [
-                {"name": 'Buttercream', "cost": 0},
-                {"name": 'Chocolate Buttercream', "cost": 0},
-                {"name": 'Whipped', "cost": 0},
-                {"name": 'Chocolate Whipped', "cost": 0},
-                {"name": "Cream Cheese", "cost": 0.25}
+                {"name": 'Buttercream', "cost": 0, "display": "0%"},
+                {"name": 'Chocolate Buttercream', "cost": 0, "display": "0%"},
+                {"name": 'Whipped', "cost": 0, "display": "0%"},
+                {"name": 'Chocolate Whipped', "cost": 0, "display": "0%"},
+                {"name": "Cream Cheese", "cost": 0.25, "display": "25%"},
+                {"name": "fondant", "cost": 1, "display": "100%"}
             ]
         };
         return FrostingFlavors;
@@ -156,23 +157,24 @@
                 'state',
                 'zipcode',
                 'payment',
-                'layers'
+                'layers',
+                'total'
             ],
             trackedItemsLength = trackedItems.length,
             data               = {};
 
-        // This is only being used to speed up testing
-        data.firstName  = 'Edward';
-        data.lastName   = 'Grant';
-        data.email      = 'themasternone@gmail.com';
-        data.phoneNum    = '313.799.2101';
-        data.addressOne = '18441 Delaware Ave';
-        data.addressTwo = undefined;
-        data.city       = 'RedFord';
-        data.state      = 26;
-        data.zipcode    = 48240;
-        data.payment    = 'PayPal';
-        data.layers     = [];
+        /*        // This is only being used to speed up testing
+         data.firstName  = 'Edward';
+         data.lastName   = 'Grant';
+         data.email      = 'themasternone@gmail.com';
+         data.phoneNum   = '313.799.2101';
+         data.addressOne = '18441 Delaware Ave';
+         data.addressTwo = undefined;
+         data.city       = 'RedFord';
+         data.state      = 26;
+         data.zipcode    = 48240;
+         data.payment    = 'PayPal';
+         data.layers     = [];*/
 
         var OrderFormData;
         OrderFormData = {
@@ -186,31 +188,25 @@
                     self[trackedItems[i]] = data[trackedItems[i]]
                 }
             },
-            totalup: function(){
-                data.total = 0;
-                console.log('inside totalup function');
-                console.log('data.layers', data.layers);
-                console.log('data.total', data.total);
+            totalup: function(size, cake, frosting){
+                data.total    = 0;
+                this.size     = size;
+                this.cake     = cake;
+                this.frosting = frosting;
                 for(var i = 0; i < data.layers.length; i++){
-                    console.log(data.layers[i]);
                     var currentLayer = data.layers[i];
                     for(var j = 0; j < layerItems.length; j++){
                         var currentLayerItem = layerItems[j];
-                        console.log('currentLayer[currentLayerItem]', currentLayer[currentLayerItem]);
-                        //console.log('this[currentLayerItem][currentLayer[currentLayerItem]].cost', this[currentLayerItem][currentLayer[currentLayerItem]].cost);
                         switch(currentLayerItem){
                             case 'size':
-                                //console.log('in size adding to total', this[currentLayerItem][currentLayer[currentLayerItem]].cost);
-                                //this.total += this[currentLayerItem][currentLayer[currentLayerItem]].cost;
-                                //this.total += 2;
+                                // Size is the base price
+                                data.total += this[currentLayerItem][currentLayer[currentLayerItem]].cost;
                                 break;
                             case 'frosting':
                             case 'cake':
-                                console.log('in ' + currentLayerItem);
-                                //console.log('size', this.size[currentLayer.size].cost);
-                                //console.log(currentLayerItem, this[currentLayerItem][currentLayer[currentLayerItem]].cost);
-                                //console.log('adding', this.size[currentLayer.size].cost * this[currentLayerItem][currentLayer[currentLayerItem]].cost);
-                                //this.total += this.size[currentLayer.size].cost * this[currentLayerItem][currentLayer[currentLayerItem]].cost;
+                                // These items are a percentage of the price of the layer's size
+                                data.total +=
+                                    this.size[currentLayer.size].cost * this[currentLayerItem][currentLayer[currentLayerItem]].cost;
                                 break;
                             default :
                             //untracked key do nothing
@@ -218,8 +214,7 @@
 
                     }
                 }
-                return data.total;
-                //return 7;
+                return true;
             }
         };
         return OrderFormData;
@@ -251,50 +246,49 @@
     }
 
     function OrderFormCtrl(OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes){
-        //this.params = $routeParams;
-        this.layers      = [];
-        this.cakeFlavors = CakeFlavors.getFlavors();
-        this.frostingFlavors = FrostingFlavors.getFlavors();
-        this.layerSizes  = LayerSizes.getSizes();
-        var self         = this;
+        var vm             = this;
+        vm.cakeFlavors     = CakeFlavors.getFlavors();
+        vm.frostingFlavors = FrostingFlavors.getFlavors();
+        vm.layerSizes      = LayerSizes.getSizes();
         StateFactory.getStates()
             .success(function(States){
-                                 self.states = States;
-                                 if(!self.state && self.state !== 0)
-                                     self.state = 26;
+                                 vm.states = States;
+                                 if(!vm.state && vm.state !== 0)
+                                     vm.state = 26;
                              });
 
-        this.save     = function(){
-            OrderFormData.save(this);
+        vm.save     = function(){
+            OrderFormData.save(vm);
         };
-        this.addLayer = function(){
-            this.layers.push({
+        vm.addLayer = function(){
+            vm.layers = vm.layers || [];
+            vm.layers.push({
                 cake    : '',
                 frosting: '',
                 size    : ''
             });
         };
-        OrderFormData.apply(this);
+        OrderFormData.apply(vm);
     }
 
     function PrintCtrl(OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes){
-        this.layerItems = ['size', 'cake', 'frosting'];
-        this.cake       = CakeFlavors.getFlavors();
-        this.frosting   = FrostingFlavors.getFlavors();
-        this.size       = LayerSizes.getSizes();
-        this.total      = 0;
-        this.isPayPal   = function(){
-            return this.payment == 'PayPal';
+        var vm        = this;
+        vm.layerItems = ['size', 'cake', 'frosting'];
+        vm.cake       = CakeFlavors.getFlavors();
+        vm.frosting   = FrostingFlavors.getFlavors();
+        vm.size       = LayerSizes.getSizes();
+        vm.total      = 0;
+        vm.isPayPal   = function(){
+            return vm.payment == 'PayPal';
         };
-        var self        = this;
         StateFactory.getStates()
             .success(function(States){
-                                 self.states = States;
-                                 if(!self.state && self.state !== 0)
-                                     self.state = 26;
+                                 vm.states = States;
+                                 if(!vm.state && vm.state !== 0)
+                                     vm.state = 26;
                              });
-        OrderFormData.totalup();
-        OrderFormData.apply(this);
+        OrderFormData.totalup(vm.size, vm.cake, vm.frosting);
+        OrderFormData.apply(vm);
     }
 })
 (window.angular);

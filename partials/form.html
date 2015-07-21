@@ -90,8 +90,8 @@
                 <md-radio-button value="Cash" aria-label="Cash" flex-sm="50">
                     Cash
                 </md-radio-button>
-                <md-radio-button value="Check" aria-label="Check" flex-sm="50">
-                    Check
+                <md-radio-button value="Money Order" aria-label="Money Order" flex-sm="50">
+                    Money Order
                 </md-radio-button>
                 <md-radio-button value="PayPal" aria-label="PayPal" flex-sm="100">
                     <div Pay-Pal-Icon></div>
@@ -100,11 +100,13 @@
             <div ng-messages="orderForm.payment.$error" ng-show="orderForm.payment.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
+            <md-content layout="row" layout-padding class="md-body-1">No personal checks.</md-content>
         </md-input-container>
         <!--Size-->
         <md-input-container flex="33" flex-sm="100" ng-repeat-start="layer in order.layers" ng-form="layersRepeat">
             <md-select placeholder="Size" name="size" ng-model="layer.size" required ng-change="order.save();">
-                <md-option ng-repeat="size in order.layerSizes" value="{{$index}}">{{size.name}}</md-option>
+                <md-option ng-repeat="size in order.layerSizes" value="{{$index}}">{{size.name}} - {{size.display}}
+                </md-option>
             </md-select>
             <div ng-messages="layersRepeat.size.$error" ng-show="layersRepeat.size.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
@@ -113,7 +115,8 @@
         <!--Cake Flavor-->
         <md-input-container flex="33" flex-sm="100">
             <md-select placeholder="Cake Flavor" name="cake" ng-model="layer.cake" required ng-change="order.save();">
-                <md-option ng-repeat="cake in order.cakeFlavors" value="{{$index}}">{{cake.name}}</md-option>
+                <md-option ng-repeat="cake in order.cakeFlavors" value="{{$index}}">{{cake.name}} - {{cake.display}}
+                </md-option>
             </md-select>
             <div ng-messages="layersRepeat.cake.$error" ng-show="layersRepeat.cake.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
@@ -123,7 +126,9 @@
         <md-input-container flex="33" flex-sm="100" ng-repeat-end>
             <md-select placeholder="Frosting Flavor" name="frosting" ng-model="layer.frosting" required
                        ng-change="order.save();">
-                <md-option ng-repeat="frosting in order.frostingFlavors" value="{{$index}}">{{frosting.name}}</md-option>
+                <md-option ng-repeat="frosting in order.frostingFlavors" value="{{$index}}">{{frosting.name}} -
+                    {{frosting.display}}
+                </md-option>
             </md-select>
             <div ng-messages="layersRepeat.frosting.$error" ng-show="layersRepeat.frosting.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
