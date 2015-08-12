@@ -6,7 +6,7 @@
     var PHONENUM_REGEXP = /^[2-9]\d{2}[2-9]\d{2}\d{4}$/;
     var ZIPCODE_REGEXP = /^\d{5}(\-\d{4})?$/;
 
-    angular.module('cakeOrderForm', ['ngRoute', 'ngMessages', 'ngAnimate', 'ngMaterial'])
+    angular.module('cakeOrderForm', ['ngRoute', 'ngMessages', 'ngAnimate'])
         .config(['$routeProvider', '$locationProvider', AppConfig])
         .controller('AppCtrl', ['$route', '$routeParams', '$location', AppCtrl])
         .controller('OrderFormCtrl', [
@@ -90,16 +90,16 @@
         var LayerSizes      = {};
         LayerSizes.getSizes = function(){
             return [
-                {"name": "6 inch round", "cost": 10, "display": "$10.00"},
-                {"name": "8 inch round", "cost": 14, "display": "$14.00"},
-                {"name": "10 inch round", "cost": 16, "display": "$16.00"},
-                {"name": "12 inch round", "cost": 18, "display": "$18.00"},
-                {"name": "14 inch round", "cost": 20, "display": "$20.00"},
-                {"name": "16 inch round", "cost": 22, "display": "$22.00"},
-                {"name": "1/8 sheet", "cost": 10, "display": "$10.00"},
-                {"name": "1/4 sheet", "cost": 15, "display": "$15.00"},
-                {"name": "1/2 sheet", "cost": 20, "display": "$20.00"},
-                {"name": "full sheet", "cost": 40, "display": "$40.00"}
+                {"id": 0, "name": "6 inch round", "cost": 10, "display": "$10.00"},
+                {"id": 1, "name": "8 inch round", "cost": 14, "display": "$14.00"},
+                {"id": 2, "name": "10 inch round", "cost": 16, "display": "$16.00"},
+                {"id": 3, "name": "12 inch round", "cost": 18, "display": "$18.00"},
+                {"id": 4, "name": "14 inch round", "cost": 20, "display": "$20.00"},
+                {"id": 5, "name": "16 inch round", "cost": 22, "display": "$22.00"},
+                {"id": 6, "name": "1/8 sheet", "cost": 10, "display": "$10.00"},
+                {"id": 7, "name": "1/4 sheet", "cost": 15, "display": "$15.00"},
+                {"id": 8, "name": "1/2 sheet", "cost": 20, "display": "$20.00"},
+                {"id": 9, "name": "full sheet", "cost": 40, "display": "$40.00"}
             ]
         };
         return LayerSizes;
@@ -109,13 +109,13 @@
         var CakeFlavors        = {};
         CakeFlavors.getFlavors = function(){
             return [
-                {"name": 'Chocolate', "cost": 0, "display": "0%"},
-                {"name": 'German Chocolate', "cost": 0, "display": "0%"},
-                {"name": 'Red Velvet', "cost": 0, "display": "0%"},
-                {"name": 'Yellow', "cost": 0, "display": "0%"},
-                {"name": 'White', "cost": 0, "display": "0%"},
-                {"name": 'Spice', "cost": 0, "display": "0%"},
-                {"name": 'Carrot', "cost": 0, "display": "0%"}
+                {"id": 0, "name": 'Chocolate', "cost": 0, "display": "0%"},
+                {"id": 1, "name": 'German Chocolate', "cost": 0, "display": "0%"},
+                {"id": 2, "name": 'Red Velvet', "cost": 0, "display": "0%"},
+                {"id": 3, "name": 'Yellow', "cost": 0, "display": "0%"},
+                {"id": 4, "name": 'White', "cost": 0, "display": "0%"},
+                {"id": 5, "name": 'Spice', "cost": 0, "display": "0%"},
+                {"id": 6, "name": 'Carrot', "cost": 0, "display": "0%"}
             ]
         };
         return CakeFlavors;
@@ -125,12 +125,12 @@
         var FrostingFlavors        = {};
         FrostingFlavors.getFlavors = function(){
             return [
-                {"name": 'Buttercream', "cost": 0, "display": "0%"},
-                {"name": 'Chocolate Buttercream', "cost": 0, "display": "0%"},
-                {"name": 'Whipped', "cost": 0, "display": "0%"},
-                {"name": 'Chocolate Whipped', "cost": 0, "display": "0%"},
-                {"name": "Cream Cheese", "cost": 0.25, "display": "25%"},
-                {"name": "fondant", "cost": 1, "display": "100%"}
+                {"id": 0, "name": 'Buttercream', "cost": 0, "display": "0%"},
+                {"id": 1, "name": 'Chocolate Buttercream', "cost": 0, "display": "0%"},
+                {"id": 2, "name": 'Whipped', "cost": 0, "display": "0%"},
+                {"id": 3, "name": 'Chocolate Whipped', "cost": 0, "display": "0%"},
+                {"id": 4, "name": "Cream Cheese", "cost": 0.25, "display": "25%"},
+                {"id": 5, "name": "fondant", "cost": 1, "display": "100%"}
             ]
         };
         return FrostingFlavors;
@@ -163,18 +163,18 @@
             trackedItemsLength = trackedItems.length,
             data               = {};
 
-        /*        // This is only being used to speed up testing
-         data.firstName  = 'Edward';
-         data.lastName   = 'Grant';
-         data.email      = 'themasternone@gmail.com';
-         data.phoneNum   = '313.799.2101';
-         data.addressOne = '18441 Delaware Ave';
-         data.addressTwo = undefined;
-         data.city       = 'RedFord';
-         data.state      = 26;
-         data.zipcode    = 48240;
-         data.payment    = 'PayPal';
-         data.layers     = [];*/
+        // This is only being used to speed up testing
+        data.firstName  = 'Edward';
+        data.lastName   = 'Grant';
+        data.email      = 'themasternone@gmail.com';
+        data.phoneNum   = '313.799.2101';
+        data.addressOne = '18441 Delaware Ave';
+        data.addressTwo = undefined;
+        data.city       = 'RedFord';
+        data.state      = 26;
+        data.zipcode    = 48240;
+        data.payment    = 'PayPal';
+        data.layers     = [];
 
         var OrderFormData;
         OrderFormData = {

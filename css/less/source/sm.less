@@ -1,49 +1,37 @@
-.text-left {
-  text-align: left;
-}
-
-.text-right {
-  text-align: right;
-}
-
-md-toolbar{
-  left: 0;
-  position: fixed;
-  top: 0;
-  > .md-toolbar-tools{
-    .md-headline{
-      width: 160px;
+form {
+  .element {
+    font-size: 24px;
+    line-height: 1.25;
+    padding: 0;
+    .custom-select {
+      margin: 0;
     }
-    > .md-button:last-child{
-      margin-right: 16px;
+    label {
+      font-family: 'Mate SC', serif;
+      font-size: .8334em;
+      font-weight: 400;
+      text-transform: lowercase;
     }
-  }
-}
-#main{
-    margin: 64px 0 0;
-}
-#addLayerWrapper{
-  background-color: transparent;
-  position: fixed;
-  right: 32px;
-  top: 30px;
-  z-index: 10;
-}
-md-input-container{
-  .md-char-counter{
-      bottom: 3px;
-      right: 4px;
-  }
-  md-select {
-    padding-bottom: 0;
-    .md-select-label {
-      min-width: 100%;
+    input,
+    select {
+      border: 1px solid #DDD;
+      border-radius: 5px;
+      font-family: helvetica, sans-serif;
+      font-size: inherit;
+      font-weight: bold;
+      line-height: inherit;
+      padding: 0 0 0 0.3334em;
+      width: 100%;
+    }
+    [type="radio"] {
+      width: auto;
+    }
+    .ng-dirty.ng-invalid + [ng-messages] {
+      color: #A81712;
+      font-family: 'Mate SC', serif;
+      font-size: 0.8334em;
+      font-weight: 300;
+      text-transform: lowercase;
     }
   }
-}
-[value="PayPal"]{
-    margin-top: -5px;
-}
-[value="PayPal"] .md-label{
-    margin-top: 0;
 }

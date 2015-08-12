@@ -1,115 +1,304 @@
 /* This file will control the order and flow of the css */
 /** This section will define the break points sizes used in the code **/
-/* small devices (small phones, @small and up */
-.md-sm-32px-1 {
-  font-size: 32px;
-  height: 32px;
-  line-height: 1;
-  width: 32px;
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
 }
-.md-sm-32px-2 {
-  font-size: 32px;
+[flex] {
+  display: flex;
+}
+[flex][flex-wrap] {
+  flex-wrap: wrap;
+}
+[flex][layout="row"] {
+  flex-direction: row;
+}
+[flex][layout="row"][role="group"] > * {
+  display: inline-block;
+  margin: auto 0;
+}
+[flex][layout="row"][role="group"] > *:nth-child(2n) {
+  margin-right: 16px;
+}
+[flex][layout="row"][role="group"] > *:nth-child(2n+1) {
+  margin-right: 8px;
+}
+[flex][layout="column"] {
+  flex-direction: column;
+}
+[flex] [flex-item] {
+  flex: 1;
+}
+[flex] [flex-align],
+[flex] [flex-align="start"] {
+  align-self: flex-start;
+}
+[flex] [flex-align="end"] {
+  align-self: flex-end;
+}
+.toolbar {
+  background-color: #3366ff;
+  color: #ffffff;
   height: 64px;
-  line-height: 2;
+  left: 0;
+  padding: 0 16px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.toolbar h3 {
+  font-size: 24px;
+  line-height: 64px;
+  margin: 0;
+  padding: 0;
+}
+.toolbar a {
+  color: inherit;
+  text-decoration: none;
+}
+.toolbar .btn.btn__icon {
+  background-color: transparent;
+}
+.btn {
+  display: inline-block;
+  position: relative;
+}
+.btn.btn__icon {
+  background-color: #f44336;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  height: 64px;
   width: 64px;
 }
-
+.btn.btn__icon.btn__icon__small {
+  height: 48px;
+  width: 48px;
+}
+.btn.btn__icon[disabled] {
+  color: rgba(0, 0, 0, 0.26);
+  cursor: not-allowed;
+}
+.btn .icon {
+  margin: auto;
+}
+.icon {
+  font-size: 32px;
+}
 .text-left {
   text-align: left;
 }
-
 .text-right {
   text-align: right;
 }
-md-toolbar {
-  left: 0;
-  position: fixed;
-  top: 0;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
-md-toolbar > .md-toolbar-tools .md-headline {
-  width: 160px;
-}
-md-toolbar > .md-toolbar-tools > .md-button:last-child {
-  margin-right: 16px;
-}
-#main {
-  margin: 64px 0 0;
+main {
+  margin-top: 64px;
+  padding: 16px;
 }
 #addLayerWrapper {
   background-color: transparent;
   position: fixed;
-  right: 32px;
-  top: 30px;
+  right: 54px;
+  top: 40px;
   z-index: 10;
 }
-md-input-container .md-char-counter {
-  bottom: 3px;
-  right: 4px;
+/* small devices (small phones, @small and up */
+[flex][layout="row"] > [sm="33"],
+[flex][layout="row"] > [sm="34"] {
+  max-width: 33.33%;
 }
-md-input-container md-select {
-  padding-bottom: 0;
+[flex][layout="row"] > [sm="50"] {
+  max-width: 50%;
 }
-md-input-container md-select .md-select-label {
-  min-width: 100%;
+[flex][layout="row"] > [sm="100"] {
+  max-width: 100%;
 }
-[value="PayPal"] {
-  margin-top: -5px;
+[flex][layout="column"] > [sm="33"],
+[flex][layout="column"] > [sm="34"] {
+  max-height: 33.33%;
 }
-[value="PayPal"] .md-label {
-  margin-top: 0;
+[flex][layout="column"] > [sm="50"] {
+  max-height: 50%;
+}
+[flex][layout="column"] > [sm="100"] {
+  max-height: 100%;
+}
+[flex] [sm="33"],
+[flex] [sm="34"] {
+  -webkit-flex: 0 0 33.33%;
+  -ms-flex: 0 0 33.33%;
+  flex: 0 0 33.33%;
+}
+[flex] [sm="50"] {
+  -webkit-flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+[flex] [sm="100"] {
+  -webkit-flex: 0 0 100%;
+  -ms-flex: 0 0 100%;
+  flex: 0 0 100%;
+}
+form .element {
+  font-size: 24px;
+  line-height: 1.25;
+  padding: 0;
+}
+form .element .custom-select {
+  margin: 0;
+}
+form .element label {
+  font-family: 'Mate SC', serif;
+  font-size: .8334em;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+form .element input,
+form .element select {
+  border: 1px solid #DDD;
+  border-radius: 5px;
+  font-family: helvetica, sans-serif;
+  font-size: inherit;
+  font-weight: bold;
+  line-height: inherit;
+  padding: 0 0 0 0.3334em;
+  width: 100%;
+}
+form .element [type="radio"] {
+  width: auto;
+}
+form .element .ng-dirty.ng-invalid + [ng-messages] {
+  color: #A81712;
+  font-family: 'Mate SC', serif;
+  font-size: 0.8334em;
+  font-weight: 300;
+  text-transform: lowercase;
 }
 /* Mediun devices (large phones, tablets, @medium and up) */
 @media (min-width: 600px) {
-  .md-md-32px-1 {
-    font-size: 32px;
-    height: 32px;
-    line-height: 1;
-    width: 32px;
+  [flex][layout="row"] > [md="33"],
+  [flex][layout="row"] > [md="34"] {
+    max-width: 33.33%;
   }
-  .md-md-32px-2 {
-    font-size: 32px;
-    height: 64px;
-    line-height: 2;
-    width: 64px;
+  [flex][layout="row"] > [md="50"] {
+    max-width: 50%;
   }
-  md-toolbar > .md-toolbar-tools .md-headline {
-    width: auto;
+  [flex][layout="row"] > [md="100"] {
+    max-width: 100%;
   }
-  [value="PayPal"] {
-    margin-top: 15px;
+  [flex][layout="column"] > [md="33"],
+  [flex][layout="column"] > [md="34"] {
+    max-height: 33.33%;
   }
-  [value="PayPal"] .md-label {
-    margin-top: 15px;
+  [flex][layout="column"] > [md="50"] {
+    max-height: 50%;
+  }
+  [flex][layout="column"] > [md="100"] {
+    max-height: 100%;
+  }
+  [flex] [md="33"],
+  [flex] [md="34"] {
+    -webkit-flex: 0 0 33.33%;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+  }
+  [flex] [md="50"] {
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+  }
+  [flex] [md="100"] {
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+  }
+  form .element {
+    font-size: 20px;
+    padding: 0 16px 0 0;
   }
 }
 /* Large devices (desktops, @large and up) */
 @media (min-width: 960px) {
-  .md-lg-32px-1 {
-    font-size: 32px;
-    height: 32px;
-    line-height: 1;
-    width: 32px;
+  [flex][layout="row"] > [lg="33"],
+  [flex][layout="row"] > [lg="34"] {
+    max-width: 33.33%;
   }
-  .md-lg-32px-2 {
-    font-size: 32px;
-    height: 64px;
-    line-height: 2;
-    width: 64px;
+  [flex][layout="row"] > [lg="50"] {
+    max-width: 50%;
+  }
+  [flex][layout="row"] > [lg="100"] {
+    max-width: 100%;
+  }
+  [flex][layout="column"] > [lg="33"],
+  [flex][layout="column"] > [lg="34"] {
+    max-height: 33.33%;
+  }
+  [flex][layout="column"] > [lg="50"] {
+    max-height: 50%;
+  }
+  [flex][layout="column"] > [lg="100"] {
+    max-height: 100%;
+  }
+  [flex] [lg="33"],
+  [flex] [lg="34"] {
+    -webkit-flex: 0 0 33.33%;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+  }
+  [flex] [lg="50"] {
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+  }
+  [flex] [lg="100"] {
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
   }
 }
 /* Extra Large devices (extra large desktops, @xLarge and up) */
 @media (min-width: 1200px) {
-  .md-xl-32px-1 {
-    font-size: 32px;
-    height: 32px;
-    line-height: 1;
-    width: 32px;
+  [flex][layout="row"] > [xl="33"],
+  [flex][layout="row"] > [xl="34"] {
+    max-width: 33.33%;
   }
-  .md-xl-32px-2 {
-    font-size: 32px;
-    height: 64px;
-    line-height: 2;
-    width: 64px;
+  [flex][layout="row"] > [xl="50"] {
+    max-width: 50%;
+  }
+  [flex][layout="row"] > [xl="100"] {
+    max-width: 100%;
+  }
+  [flex][layout="column"] > [xl="33"],
+  [flex][layout="column"] > [xl="34"] {
+    max-height: 33.33%;
+  }
+  [flex][layout="column"] > [xl="50"] {
+    max-height: 50%;
+  }
+  [flex][layout="column"] > [xl="100"] {
+    max-height: 100%;
+  }
+  [flex] [xl="33"],
+  [flex] [xl="34"] {
+    -webkit-flex: 0 0 33.33%;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+  }
+  [flex] [xl="50"] {
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+  }
+  [flex] [xl="100"] {
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
   }
 }
 @media print {
