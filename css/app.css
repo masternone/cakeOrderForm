@@ -1,308 +1,395 @@
-/* This file will control the order and flow of the css */
-/** This section will define the break points sizes used in the code **/
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+*, :after, :before {
+    box-sizing: border-box
 }
+
 [flex] {
-  display: flex;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
 }
+
 [flex][flex-wrap] {
-  flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
 }
-[flex][layout="row"] {
-  flex-direction: row;
+
+[flex][layout=row] {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row
 }
-[flex][layout="row"][role="group"] > * {
-  display: inline-block;
-  margin: auto 0;
+
+[flex][layout=row][role=group] > * {
+    display: inline-block;
+    margin: auto 0
 }
-[flex][layout="row"][role="group"] > *:nth-child(2n) {
-  margin-right: 16px;
+
+[flex][layout=row][role=group] > :nth-child(2n) {
+    margin-right: 1pc
 }
-[flex][layout="row"][role="group"] > *:nth-child(2n+1) {
-  margin-right: 8px;
+
+[flex][layout=row][role=group] > :nth-child(2n+1) {
+    margin-right: 8px
 }
-[flex][layout="column"] {
-  flex-direction: column;
+
+[flex][layout=column] {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column
 }
+
 [flex] [flex-item] {
-  flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1
 }
-[flex] [flex-align],
-[flex] [flex-align="start"] {
-  align-self: flex-start;
+
+[flex] [flex-align=start], [flex] [flex-align] {
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start
 }
-[flex] [flex-align="end"] {
-  align-self: flex-end;
+
+[flex] [flex-align=end] {
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+    align-self: flex-end
 }
+
 .toolbar {
-  background-color: #3366ff;
-  color: #ffffff;
-  height: 64px;
-  left: 0;
-  padding: 0 16px;
-  position: fixed;
-  top: 0;
-  width: 100%;
+    background-color: #36F;
+    color: #FFF;
+    position: fixed
 }
-.toolbar h3 {
-  font-size: 24px;
-  line-height: 64px;
-  margin: 0;
-  padding: 0;
-}
+
 .toolbar a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none
 }
+
 .toolbar .btn.btn__icon {
-  background-color: transparent;
+    background-color: transparent
 }
+
 .btn {
-  display: inline-block;
-  position: relative;
+    display: inline-block;
+    position: relative
 }
+
 .btn.btn__icon {
-  background-color: #f44336;
-  border-radius: 50%;
-  color: #ffffff;
-  display: flex;
-  height: 64px;
-  width: 64px;
+    background-color: #F44336;
+    border-radius: 50%;
+    color: #FFF;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex
 }
-.btn.btn__icon.btn__icon__small {
-  height: 48px;
-  width: 48px;
-}
+
 .btn.btn__icon[disabled] {
-  color: rgba(0, 0, 0, 0.26);
-  cursor: not-allowed;
+    color: rgba(0, 0, 0, .26);
+    cursor: not-allowed
 }
+
 .btn .icon {
-  margin: auto;
+    margin: auto
 }
-.icon {
-  font-size: 32px;
-}
+
 .text-left {
-  text-align: left;
+    text-align: left
 }
+
 .text-right {
-  text-align: right;
+    text-align: right
 }
-html,
-body {
-  margin: 0;
-  padding: 0;
+
+body, html {
+    margin: 0;
+    padding: 0
 }
+
 main {
-  margin-top: 64px;
-  padding: 16px;
+    margin-top: 4pc;
+    padding: 1pc
 }
+
 #addLayerWrapper {
-  background-color: transparent;
-  position: fixed;
-  right: 54px;
-  top: 40px;
-  z-index: 10;
+    background-color: transparent;
+    position: fixed;
+    z-index: 1
 }
-/* small devices (small phones, @small and up */
-[flex][layout="row"] > [sm="33"],
-[flex][layout="row"] > [sm="34"] {
-  max-width: 33.33%;
+
+[flex][layout=row] > [sm="33"], [flex][layout=row] > [sm="34"] {
+    max-width: 33.33%
 }
-[flex][layout="row"] > [sm="50"] {
-  max-width: 50%;
+
+[flex][layout=row] > [sm="50"] {
+    max-width: 50%
 }
-[flex][layout="row"] > [sm="100"] {
-  max-width: 100%;
+
+[flex][layout=row] > [sm="100"] {
+    max-width: 100%
 }
-[flex][layout="column"] > [sm="33"],
-[flex][layout="column"] > [sm="34"] {
-  max-height: 33.33%;
+
+[flex][layout=column] > [sm="33"], [flex][layout=column] > [sm="34"] {
+    max-height: 33.33%
 }
-[flex][layout="column"] > [sm="50"] {
-  max-height: 50%;
+
+[flex][layout=column] > [sm="50"] {
+    max-height: 50%
 }
-[flex][layout="column"] > [sm="100"] {
-  max-height: 100%;
+
+[flex][layout=column] > [sm="100"] {
+    max-height: 100%
 }
-[flex] [sm="33"],
-[flex] [sm="34"] {
-  -webkit-flex: 0 0 33.33%;
-  -ms-flex: 0 0 33.33%;
-  flex: 0 0 33.33%;
+
+[flex] [sm="33"], [flex] [sm="34"] {
+    -webkit-flex: 0 0 33.33%;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%
 }
+
 [flex] [sm="50"] {
-  -webkit-flex: 0 0 50%;
-  -ms-flex: 0 0 50%;
-  flex: 0 0 50%;
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%
 }
+
 [flex] [sm="100"] {
-  -webkit-flex: 0 0 100%;
-  -ms-flex: 0 0 100%;
-  flex: 0 0 100%;
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%
 }
+
+.toolbar {
+    height: 76px;
+    left: 0;
+    padding: 0 1pc;
+    top: 0;
+    width: 100%
+}
+
+.toolbar h3 {
+    font-size: 24px;
+    line-height: 1;
+    margin: auto 0;
+    padding: 0
+}
+
+.btn.btn__icon {
+    height: 76px;
+    min-width: 4pc
+}
+
+.btn.btn__icon.btn__icon__small {
+    height: 3pc;
+    min-width: 3pc
+}
+
+.icon {
+    font-size: 2pc
+}
+
 form .element {
-  font-size: 24px;
-  line-height: 1.25;
-  padding: 0;
+    font-size: 24px;
+    line-height: 1.25;
+    padding: 0
 }
+
 form .element .custom-select {
-  margin: 0;
+    margin: 0
 }
+
 form .element label {
-  font-family: 'Mate SC', serif;
-  font-size: .8334em;
-  font-weight: 400;
-  text-transform: lowercase;
+    font-family: Mate SC, serif;
+    font-size: .8334em;
+    font-weight: 400;
+    text-transform: lowercase
 }
-form .element input,
-form .element select {
-  border: 1px solid #DDD;
-  border-radius: 5px;
-  font-family: helvetica, sans-serif;
-  font-size: inherit;
-  font-weight: bold;
-  line-height: inherit;
-  padding: 0 0 0 0.3334em;
-  width: 100%;
+
+form .element input, form .element select {
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    font-family: helvetica, sans-serif;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: inherit;
+    padding: 0 0 0 .3334em;
+    width: 100%
 }
-form .element [type="radio"] {
-  width: auto;
+
+form .element [type=radio] {
+    width: auto
 }
+
 form .element .ng-dirty.ng-invalid + [ng-messages] {
-  color: #A81712;
-  font-family: 'Mate SC', serif;
-  font-size: 0.8334em;
-  font-weight: 300;
-  text-transform: lowercase;
+    color: #A81712;
+    font-family: Mate SC, serif;
+    font-size: .8334em;
+    font-weight: 300;
+    text-transform: lowercase
 }
-/* Mediun devices (large phones, tablets, @medium and up) */
+
+#addLayerWrapper {
+    right: 54px;
+    top: 52px
+}
+
 @media (min-width: 600px) {
-  [flex][layout="row"] > [md="33"],
-  [flex][layout="row"] > [md="34"] {
-    max-width: 33.33%;
-  }
-  [flex][layout="row"] > [md="50"] {
-    max-width: 50%;
-  }
-  [flex][layout="row"] > [md="100"] {
-    max-width: 100%;
-  }
-  [flex][layout="column"] > [md="33"],
-  [flex][layout="column"] > [md="34"] {
-    max-height: 33.33%;
-  }
-  [flex][layout="column"] > [md="50"] {
-    max-height: 50%;
-  }
-  [flex][layout="column"] > [md="100"] {
-    max-height: 100%;
-  }
-  [flex] [md="33"],
-  [flex] [md="34"] {
-    -webkit-flex: 0 0 33.33%;
-    -ms-flex: 0 0 33.33%;
-    flex: 0 0 33.33%;
-  }
-  [flex] [md="50"] {
-    -webkit-flex: 0 0 50%;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-  }
-  [flex] [md="100"] {
-    -webkit-flex: 0 0 100%;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-  }
-  form .element {
-    font-size: 20px;
-    padding: 0 16px 0 0;
-  }
+    [flex][layout=row] > [md="33"], [flex][layout=row] > [md="34"] {
+        max-width: 33.33%
+    }
+
+    [flex][layout=row] > [md="50"] {
+        max-width: 50%
+    }
+
+    [flex][layout=row] > [md="100"] {
+        max-width: 100%
+    }
+
+    [flex][layout=column] > [md="33"], [flex][layout=column] > [md="34"] {
+        max-height: 33.33%
+    }
+
+    [flex][layout=column] > [md="50"] {
+        max-height: 50%
+    }
+
+    [flex][layout=column] > [md="100"] {
+        max-height: 100%
+    }
+
+    [flex] [md="33"], [flex] [md="34"] {
+        -webkit-flex: 0 0 33.33%;
+        -ms-flex: 0 0 33.33%;
+        flex: 0 0 33.33%
+    }
+
+    [flex] [md="50"] {
+        -webkit-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%
+    }
+
+    [flex] [md="100"] {
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%
+    }
+
+    .btn.btn__icon, .toolbar {
+        height: 4pc
+    }
+
+    .btn.btn__icon.btn__icon__small {
+        height: 3pc
+    }
+
+    .icon {
+        font-size: 2pc
+    }
+
+    form .element {
+        font-size: 20px;
+        padding: 0 1pc 0 0
+    }
+
+    #addLayerWrapper {
+        top: 40px
+    }
 }
-/* Large devices (desktops, @large and up) */
+
 @media (min-width: 960px) {
-  [flex][layout="row"] > [lg="33"],
-  [flex][layout="row"] > [lg="34"] {
-    max-width: 33.33%;
-  }
-  [flex][layout="row"] > [lg="50"] {
-    max-width: 50%;
-  }
-  [flex][layout="row"] > [lg="100"] {
-    max-width: 100%;
-  }
-  [flex][layout="column"] > [lg="33"],
-  [flex][layout="column"] > [lg="34"] {
-    max-height: 33.33%;
-  }
-  [flex][layout="column"] > [lg="50"] {
-    max-height: 50%;
-  }
-  [flex][layout="column"] > [lg="100"] {
-    max-height: 100%;
-  }
-  [flex] [lg="33"],
-  [flex] [lg="34"] {
-    -webkit-flex: 0 0 33.33%;
-    -ms-flex: 0 0 33.33%;
-    flex: 0 0 33.33%;
-  }
-  [flex] [lg="50"] {
-    -webkit-flex: 0 0 50%;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-  }
-  [flex] [lg="100"] {
-    -webkit-flex: 0 0 100%;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-  }
+    [flex][layout=row] > [lg="33"], [flex][layout=row] > [lg="34"] {
+        max-width: 33.33%
+    }
+
+    [flex][layout=row] > [lg="50"] {
+        max-width: 50%
+    }
+
+    [flex][layout=row] > [lg="100"] {
+        max-width: 100%
+    }
+
+    [flex][layout=column] > [lg="33"], [flex][layout=column] > [lg="34"] {
+        max-height: 33.33%
+    }
+
+    [flex][layout=column] > [lg="50"] {
+        max-height: 50%
+    }
+
+    [flex][layout=column] > [lg="100"] {
+        max-height: 100%
+    }
+
+    [flex] [lg="33"], [flex] [lg="34"] {
+        -webkit-flex: 0 0 33.33%;
+        -ms-flex: 0 0 33.33%;
+        flex: 0 0 33.33%
+    }
+
+    [flex] [lg="50"] {
+        -webkit-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%
+    }
+
+    [flex] [lg="100"] {
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%
+    }
 }
-/* Extra Large devices (extra large desktops, @xLarge and up) */
+
 @media (min-width: 1200px) {
-  [flex][layout="row"] > [xl="33"],
-  [flex][layout="row"] > [xl="34"] {
-    max-width: 33.33%;
-  }
-  [flex][layout="row"] > [xl="50"] {
-    max-width: 50%;
-  }
-  [flex][layout="row"] > [xl="100"] {
-    max-width: 100%;
-  }
-  [flex][layout="column"] > [xl="33"],
-  [flex][layout="column"] > [xl="34"] {
-    max-height: 33.33%;
-  }
-  [flex][layout="column"] > [xl="50"] {
-    max-height: 50%;
-  }
-  [flex][layout="column"] > [xl="100"] {
-    max-height: 100%;
-  }
-  [flex] [xl="33"],
-  [flex] [xl="34"] {
-    -webkit-flex: 0 0 33.33%;
-    -ms-flex: 0 0 33.33%;
-    flex: 0 0 33.33%;
-  }
-  [flex] [xl="50"] {
-    -webkit-flex: 0 0 50%;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-  }
-  [flex] [xl="100"] {
-    -webkit-flex: 0 0 100%;
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-  }
+    [flex][layout=row] > [xl="33"], [flex][layout=row] > [xl="34"] {
+        max-width: 33.33%
+    }
+
+    [flex][layout=row] > [xl="50"] {
+        max-width: 50%
+    }
+
+    [flex][layout=row] > [xl="100"] {
+        max-width: 100%
+    }
+
+    [flex][layout=column] > [xl="33"], [flex][layout=column] > [xl="34"] {
+        max-height: 33.33%
+    }
+
+    [flex][layout=column] > [xl="50"] {
+        max-height: 50%
+    }
+
+    [flex][layout=column] > [xl="100"] {
+        max-height: 100%
+    }
+
+    [flex] [xl="33"], [flex] [xl="34"] {
+        -webkit-flex: 0 0 33.33%;
+        -ms-flex: 0 0 33.33%;
+        flex: 0 0 33.33%
+    }
+
+    [flex] [xl="50"] {
+        -webkit-flex: 0 0 50%;
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%
+    }
+
+    [flex] [xl="100"] {
+        -webkit-flex: 0 0 100%;
+        -ms-flex: 0 0 100%;
+        flex: 0 0 100%
+    }
 }
+
 @media print {
-  .no-print {
-    display: none;
-  }
+    .no-print {
+        display: none
+    }
 }

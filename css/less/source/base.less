@@ -40,18 +40,7 @@
 .toolbar {
   background-color: @toolbar__background;
   color: @toolbar__color;
-  height: 64px;
-  left: 0;
-  padding: 0 16px;
   position: fixed;
-  top: 0;
-  width: 100%;
-  h3 {
-    font-size: 24px;
-    line-height: 64px;
-    margin: 0;
-    padding: 0;
-  }
   a {
     color: inherit;
     text-decoration: none;
@@ -71,12 +60,6 @@
     border-radius: 50%;
     color: @button__color;
     display: flex;
-    height: 64px;
-    width: 64px;
-    &.btn__icon__small {
-      height: 48px;
-      width: 48px;
-    }
     &[disabled] {
       color: @toolbar__disabled;
       cursor: not-allowed;
@@ -85,10 +68,6 @@
   .icon {
     margin: auto;
   }
-}
-
-.icon {
-  font-size: 32px;
 }
 
 .text-left {
@@ -112,7 +91,5 @@ main {
 #addLayerWrapper {
   background-color: transparent;
   position: fixed;
-  right: 54px;
-  top: 40px;
   z-index: 10;
 }
