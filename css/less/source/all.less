@@ -1,45 +1,69 @@
-.all(@size){
-  @flex-size: flex-@size;
+.flex-flex(@size, @n, @i: 5) when (@i =< @n) {
+  @name: ~"flex-@{size}";
+  [flex] [@{name}="@{i}"] {
+    flex: 0 0 (@i * 1%);
+  }
+  .flex-flex(@size, @n, (@i + 5));
+}
+
+.flex-max-height (@size, @n, @i: 5) when (@i =< @n) {
+  @name: ~"flex-@{size}";
+  [flex][layout="column"] > [@{name}="@{i}"] {
+    max-height: (@i * 1%);
+  }
+  .flex-max-height(@size, @n, (@i + 5));
+}
+
+.flex-max-width (@size, @n, @i: 5) when (@i =< @n) {
+  @name: ~"flex-@{size}";
+  [flex][layout="row"] > [@{name}="@{i}"] {
+    max-width: (@i * 1%);
+  }
+  .flex-max-width(@size, @n, (@i + 5));
+}
+
+.offset(@size, @n, @i: 5, @step: 5) when (@i =< @n) {
+  @name: ~"offset-@{size}";
+  [@{name}="@{i}"] {
+    margin-left: (@i * 1%);
+  }
+  .offset(@size, @n, (@i + @step));
+}
+
+.all(@size) {
+  @flex-name: ~"flex-@{size}";
+  .flex-max-width(@size, 100);
+  .flex-max-height(@size, 100);
+  .flex-flex(@size, 100);
   [flex] {
     &[layout="row"] {
-      > [@{size}="33"],
-      > [@{size}="34"] {
+      > [@{flex-name}="33"],
+      > [@{flex-name}="34"] {
         max-width: 33.33%;
       }
-      > [@{size}="50"] {
-        max-width: 50%;
-      }
-      > [@{size}="100"] {
-        max-width: 100%;
+      > [@{flex-name}="66"],
+      > [@{flex-name}="67"] {
+        max-width: 66.67%;
       }
     }
     &[layout="column"] {
-      > [@{size}="33"],
-      > [@{size}="34"] {
+      > [@{flex-name}="33"],
+      > [@{flex-name}="34"] {
         max-height: 33.33%;
       }
-      > [@{size}="50"] {
-        max-height: 50%;
-      }
-      > [@{size}="100"] {
-        max-height: 100%;
+      > [@{flex-name}="66"],
+      > [@{flex-name}="67"] {
+        max-height: 66.67%;
       }
     }
-    [@{size}="33"],
-    [@{size}="34"] {
-      -webkit-flex: 0 0 33.33%;
-      -ms-flex: 0 0 33.33%;
-      flex: 0 0 33.33%
+    [@{flex-name}="33"],
+    [@{flex-name}="34"] {
+      flex: 0 0 33.33%;
     }
-    [@{size}="50"] {
-      -webkit-flex: 0 0 50%;
-      -ms-flex: 0 0 50%;
-      flex: 0 0 50%
-    }
-    [@{size}="100"] {
-      -webkit-flex: 0 0 100%;
-      -ms-flex: 0 0 100%;
-      flex: 0 0 100%
+    [@{flex-name}="66"],
+    [@{flex-name}="67"] {
+      flex: 0 0 66.67%;
     }
   }
+  .offset(@size, 95)
 }

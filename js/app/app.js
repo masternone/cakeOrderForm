@@ -130,7 +130,7 @@
                 {"id": 2, "name": 'Whipped', "cost": 0, "display": "0%"},
                 {"id": 3, "name": 'Chocolate Whipped', "cost": 0, "display": "0%"},
                 {"id": 4, "name": "Cream Cheese", "cost": 0.25, "display": "25%"},
-                {"id": 5, "name": "fondant", "cost": 1, "display": "100%"}
+                {"id": 5, "name": "Fondant", "cost": 1, "display": "100%"}
             ]
         };
         return FrostingFlavors;

@@ -1,22 +1,22 @@
 <ng-include src="'./partials/toolbar.html'"></ng-include>
-<md-content layout="row" layout-padding layout-wrap>
-    <div flex="100">{{print.addressOne}}</div>
-    <div flex="100" ng-show="print.addressTwo">{{print.addressTwo}}</div>
-    <div flex="100">{{print.city}} {{print.states[print.state].abbreviation}} {{print.zipcode}}</div>
-    <div flex="100">{{print.firstName}} {{print.lastName}}</div>
-    <div flex="35">{{print.email}}</div>
-    <div flex="35">{{print.phoneNum}}</div>
-    <div flex="15">{{print.payment}}</div>
-    <div flex="15" ng-show="print.isPayPal();" Pay-Pal-Icon></div>
-    <div flex="100" ng-repeat="layer in print.layers">
-        <div flex="100">Layer {{$index + 1}}:</div>
-        <md-content layout="row" layout-padding layout-wrap ng-repeat="item in print.layerItems">
-            <div flex="25" offset="15">{{print[item][layer[item]].name}}</div>
-            <div flex="10" class="text-right">{{print[item][layer[item]].display}}</div>
-            <div flex="50">&nbsp;</div>
-        </md-content>
+<div flex layout="row" flex-wrap>
+    <div flex-sm="100">{{print.addressOne}}</div>
+    <div flex-sm="100" ng-show="print.addressTwo">{{print.addressTwo}}</div>
+    <div flex-sm="100">{{print.city}} {{print.states[print.state].abbreviation}} {{print.zipcode}}</div>
+    <div flex-sm="100">{{print.firstName}} {{print.lastName}}</div>
+    <div flex-sm="35">{{print.email}}</div>
+    <div flex-sm="35">{{print.phoneNum}}</div>
+    <div flex-sm="15">{{print.payment}}</div>
+    <div flex-sm="15" ng-show="print.isPayPal();" Pay-Pal-Icon></div>
+    <div flex-sm="100" flex layout="row" flex-wrap ng-repeat="layer in print.layers">
+        <div flex-sm="100">Layer {{$index + 1}}:</div>
+        <div flex-sm="100" flex layout="row" flex-wrap ng-repeat="item in print.layerItems">
+            <div flex-sm="25" offset-sm="15">{{print[item][layer[item]].name}}</div>
+            <div flex-sm="10" class="text-right">{{print[item][layer[item]].display}}</div>
+            <div flex-sm="50">&nbsp;</div>
+        </div>
     </div>
-    <div flex="40"><strong>Total:</strong></div>
-    <div flex="10" class="text-right">{{print.total | currency}}</div>
-    <div flex="50">&nbsp;</div>
-</md-content>
+    <div flex-sm="40"><strong>Total:</strong></div>
+    <div flex-sm="10" class="text-right">{{print.total | currency}}</div>
+    <div flex-sm="50">&nbsp;</div>
+</div>

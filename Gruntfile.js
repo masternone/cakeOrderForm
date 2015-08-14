@@ -30,7 +30,7 @@ module.exports = function(grunt){
                     //require('cssnano')() // minify the result
                 ]
             },
-            dist   : {
+            app: {
                 src: 'css/*.css'
             }
         },
@@ -52,7 +52,7 @@ module.exports = function(grunt){
                 files  : [
                     './css/less/source/*'
                 ],
-                tasks  : ['concat:combinedCSS', 'less:app'],
+                tasks: ['concat:combinedCSS', 'less:app', 'postcss:app'],
                 options: {
                     spawn     : false,
                     livereload: true,
