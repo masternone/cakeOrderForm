@@ -10,7 +10,7 @@
         <!--First Name-->
         <div class="element" flex-sm="100" flex-md="33">
             <label>First Name</label>
-            <input name="firstName" ng-model="order.firstName" required minlength="3" md-maxlength="30"
+            <input name="firstName" ng-model="order.firstName" required minlength="3" maxlength="30"
                    ng-blur="order.save();">
 
             <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$dirty">
@@ -20,7 +20,7 @@
         <!--Last Name-->
         <div class="element" flex-sm="100" flex-md="33">
             <label>Last Name</label>
-            <input name="lastName" ng-model="order.lastName" required minlength="3" md-maxlength="30"
+            <input name="lastName" ng-model="order.lastName" required minlength="3" maxlength="30"
                    ng-blur="order.save();">
 
             <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$dirty">
@@ -50,7 +50,7 @@
         <!--Address One-->
         <div class="element" flex-sm="100" flex-md="50">
             <label>Address One</label>
-            <input name="addressOne" ng-model="order.addressOne" required minlength="3" md-maxlength="30"
+            <input name="addressOne" ng-model="order.addressOne" required minlength="3" maxlength="30"
                    ng-blur="order.save();">
 
             <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$dirty">
@@ -65,7 +65,7 @@
         <!--City-->
         <div class="element" flex-sm="100" flex-md="33">
             <label>City</label>
-            <input name="city" ng-model="order.city" required minlength="3" md-maxlength="60" ng-blur="order.save();">
+            <input name="city" ng-model="order.city" required minlength="3" maxlength="60" ng-blur="order.save();">
 
             <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$dirty">
                 <div ng-messages-include="./partials/errors.html"></div>
@@ -86,7 +86,7 @@
         <!--Zipcode-->
         <div class="element" flex-sm="100" flex-md="33">
             <label>Zip Code</label>
-            <input name="zipcode" ng-model="order.zipcode" required zipcode-valid minlength="5" md-maxlength="10"
+            <input name="zipcode" ng-model="order.zipcode" required zipcode-valid minlength="5" maxlength="10"
                    ng-blur="order.save();">
 
             <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
