@@ -103,26 +103,35 @@ main {
   position: fixed;
   z-index: 10;
 }
-
 form .element .custom-select {
   border: 1px solid transparent;
   border-radius: 5px;
+  overflow: visible;
 }
-
 form .element .custom-select:hover {
-    border-color: transparent;
+  border-color: transparent;
 }
-
 form .element .custom-select select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    /* Adding this here to make sure it is processed by auto prefixer. The library does not have a moz prefix */
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  /* Adding this here to make sure it is processed by auto prefixer. The library does not have a moz prefix */
 }
-
+form .element input,
+form .element select {
+  margin: 1px;
+}
 form .element input:hover,
 form .element select:hover {
-  border-color: #555;
+  border-color: #99b3ff;
+}
+form .element input:focus,
+form .element select:focus {
+  box-shadow: none;
+  border-color: #3366ff;
+  border-width: 2px;
+  margin: 0;
+  outline: none;
 }
 /* small devices (small phones, @small and up */
 [flex][layout="row"] > [flex-sm="5"] {
@@ -476,7 +485,7 @@ form .element select {
   font-size: inherit;
   font-weight: bold;
   line-height: inherit;
-    padding: 0.25em 0 0.05em 0.4em;
+  padding: 0.25em 0 0.05em 0.4em;
   width: 100%;
 }
 form .element [type="radio"] {

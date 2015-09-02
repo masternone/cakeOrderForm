@@ -100,6 +100,7 @@ form {
     .custom-select {
       border: 1px solid transparent;
       border-radius: 5px;
+      overflow: visible;
       &:hover {
         border-color: transparent;
       }
@@ -109,8 +110,16 @@ form {
     }
     input,
     select {
+      margin: 1px;
       &:hover {
-        border-color: #555;
+        border-color: lighten(@toolbar__background, 20%);
+      }
+      &:focus {
+        box-shadow: none;
+        border-color: @toolbar__background;
+        border-width: 2px;
+        margin: 0;
+        outline: none;
       }
     }
   }
