@@ -103,11 +103,25 @@ main {
   position: fixed;
   z-index: 10;
 }
-.custom-select {
+
+form .element .custom-select {
   border: 1px solid transparent;
   border-radius: 5px;
 }
-.custom-select:hover {
+
+form .element .custom-select:hover {
+    border-color: transparent;
+}
+
+form .element .custom-select select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Adding this here to make sure it is processed by auto prefixer. The library does not have a moz prefix */
+}
+
+form .element input:hover,
+form .element select:hover {
   border-color: #555;
 }
 /* small devices (small phones, @small and up */
@@ -462,7 +476,7 @@ form .element select {
   font-size: inherit;
   font-weight: bold;
   line-height: inherit;
-  padding: 0 0 0 0.3334em;
+    padding: 0.25em 0 0.05em 0.4em;
   width: 100%;
 }
 form .element [type="radio"] {
