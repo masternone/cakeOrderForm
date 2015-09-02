@@ -100,6 +100,7 @@ main {
 }
 #addLayerWrapper {
   background-color: transparent;
+    cursor: pointer;
   position: fixed;
   z-index: 10;
 }
@@ -119,7 +120,12 @@ form .element .custom-select select {
 }
 form .element input,
 form .element select {
+    border: 1px solid #DDD;
+    border-radius: 5px;
+    font-family: helvetica, sans-serif;
+    font-weight: bold;
   margin: 1px;
+    padding: 0.25em 0 0.05em 0.4em;
 }
 form .element input:hover,
 form .element select:hover {
@@ -132,6 +138,19 @@ form .element select:focus {
   border-width: 2px;
   margin: 0;
   outline: none;
+}
+
+form .element label {
+    font-family: 'Mate SC', serif;
+    font-weight: 400;
+    text-transform: lowercase;
+}
+
+form .element .ng-dirty.ng-invalid + [ng-messages] {
+    color: #A81712;
+    font-family: 'Mate SC', serif;
+    font-weight: 300;
+    text-transform: lowercase;
 }
 /* small devices (small phones, @small and up */
 [flex][layout="row"] > [flex-sm="5"] {
@@ -472,31 +491,19 @@ form .element .custom-select {
   margin: 0;
 }
 form .element label {
-  font-family: 'Mate SC', serif;
   font-size: .8334em;
-  font-weight: 400;
-  text-transform: lowercase;
 }
 form .element input,
 form .element select {
-  border: 1px solid #DDD;
-  border-radius: 5px;
-  font-family: helvetica, sans-serif;
   font-size: inherit;
-  font-weight: bold;
   line-height: inherit;
-  padding: 0.25em 0 0.05em 0.4em;
   width: 100%;
 }
 form .element [type="radio"] {
   width: auto;
 }
 form .element .ng-dirty.ng-invalid + [ng-messages] {
-  color: #A81712;
-  font-family: 'Mate SC', serif;
   font-size: 0.8334em;
-  font-weight: 300;
-  text-transform: lowercase;
 }
 #addLayerWrapper {
   right: 54px;

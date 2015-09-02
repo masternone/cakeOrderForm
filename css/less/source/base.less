@@ -91,6 +91,7 @@ main {
 
 #addLayerWrapper {
   background-color: transparent;
+  cursor: pointer;
   position: fixed;
   z-index: 10;
 }
@@ -110,7 +111,12 @@ form {
     }
     input,
     select {
+      border: 1px solid #DDD;
+      border-radius: 5px;
+      font-family: helvetica, sans-serif;
+      font-weight: bold;
       margin: 1px;
+      padding: 0.25em 0 0.05em 0.4em;
       &:hover {
         border-color: lighten(@toolbar__background, 20%);
       }
@@ -122,5 +128,17 @@ form {
         outline: none;
       }
     }
+    label {
+      font-family: 'Mate SC', serif;
+      font-weight: 400;
+      text-transform: lowercase;
+    }
+    .ng-dirty.ng-invalid + [ng-messages] {
+      color: #A81712;
+      font-family: 'Mate SC', serif;
+      font-weight: 300;
+      text-transform: lowercase;
+    }
+
   }
 }
