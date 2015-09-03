@@ -219,6 +219,9 @@
     }
 
     function AppConfig($routeProvider, $locationProvider){
+
+        $locationProvider.html5Mode(true);
+
         $routeProvider
             .when('/', {
                 templateUrl: './partials/form.html',
@@ -234,7 +237,6 @@
                 redirectTo: '/'
             });
 
-        //$locationProvider.html5Mode(true);
     }
 
     function AppCtrl($route, $routeParams, $location){
