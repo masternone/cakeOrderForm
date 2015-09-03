@@ -9,24 +9,11 @@
     angular.module('cakeOrderForm', ['ngRoute', 'ngMessages', 'ngAnimate'])
         .config(['$routeProvider', '$locationProvider', AppConfig])
         .controller('AppCtrl', ['$route', '$routeParams', '$location', AppCtrl])
-        .controller('OrderFormCtrl', [
-            'OrderFormData',
-            'StateFactory',
-            'CakeFlavors',
-            'FrostingFlavors',
-            'LayerSizes',
-            OrderFormCtrl
-        ])
-        .controller('PrintCtrl', [
-            'OrderFormData',
-            'StateFactory',
-            'CakeFlavors',
-            'FrostingFlavors',
-            'LayerSizes',
-            PrintCtrl
-        ])
+        .controller('OrderFormCtrl', ['OrderFormData', 'StateFactory', 'LayerElements', OrderFormCtrl])
+        .controller('PrintCtrl', ['OrderFormData', 'StateFactory', 'LayerElements', PrintCtrl])
         .factory('OrderFormData', OrderFormData)
         .factory('StateFactory', ['$http', StateFactory])
+        .factory('LayerElements', ['CakeFlavors', 'FrostingFlavors', 'LayerSizes', LayerElements])
         .factory('CakeFlavors', CakeFlavors)
         .factory('FrostingFlavors', FrostingFlavors)
         .factory('LayerSizes', LayerSizes)
@@ -84,6 +71,17 @@
                 };
             }
         };
+    }
+
+    function LayerElements(CakeFlavors, FrostingFlavors, LayerSizes){
+        var LayerElements             = {};
+        LayerElements.getElements     = function(){
+            return ['size', 'cake', 'frosting']
+        };
+        LayerElements.CakeFlavors     = CakeFlavors;
+        LayerElements.FrostingFlavors = FrostingFlavors;
+        LayerElements.LayerSizes      = LayerSizes;
+        return LayerElements;
     }
 
     function LayerSizes(){
@@ -145,8 +143,8 @@
     }
 
     function OrderFormData(){
-        var layerItems   = ['size', 'cake', 'frosting'],
-            trackedItems = [
+        var layerElements = ['size', 'cake', 'frosting'],
+            trackedItems  = [
                 'firstName',
                 'lastName',
                 'email',
@@ -195,18 +193,18 @@
                 this.frosting = frosting;
                 for(var i = 0; i < data.layers.length; i++){
                     var currentLayer = data.layers[i];
-                    for(var j = 0; j < layerItems.length; j++){
-                        var currentLayerItem = layerItems[j];
-                        switch(currentLayerItem){
+                    for(var j = 0; j < layerElements.length; j++){
+                        var currentLayerElement = layerElements[j];
+                        switch(currentLayerElement){
                             case 'size':
                                 // Size is the base price
-                                data.total += this[currentLayerItem][currentLayer[currentLayerItem]].cost;
+                                data.total += this[currentLayerElement][currentLayer[currentLayerElement]].cost;
                                 break;
                             case 'frosting':
                             case 'cake':
                                 // These items are a percentage of the price of the layer's size
                                 data.total +=
-                                    this.size[currentLayer.size].cost * this[currentLayerItem][currentLayer[currentLayerItem]].cost;
+                                    this.size[currentLayer.size].cost * this[currentLayerElement][currentLayer[currentLayerElement]].cost;
                                 break;
                             default :
                             //untracked key do nothing
@@ -245,11 +243,12 @@
         //this.$routeParams = $routeParams;
     }
 
-    function OrderFormCtrl(OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes){
-        var vm             = this;
-        vm.cakeFlavors     = CakeFlavors.getFlavors();
-        vm.frostingFlavors = FrostingFlavors.getFlavors();
-        vm.layerSizes      = LayerSizes.getSizes();
+    function OrderFormCtrl(OrderFormData, StateFactory, LayerElements){
+        var vm      = this;
+        vm.elements = LayerElements.getElements();
+        vm.cake     = LayerElements.CakeFlavors.getFlavors();
+        vm.frosting = LayerElements.FrostingFlavors.getFlavors();
+        vm.size     = LayerElements.LayerSizes.getSizes();
         StateFactory.getStates()
             .success(function(States){
                                  vm.states = States;
@@ -261,24 +260,26 @@
             OrderFormData.save(vm);
         };
         vm.addLayer = function(){
+            var temp = {};
             vm.layers = vm.layers || [];
-            vm.layers.push({
-                cake    : '',
-                frosting: '',
-                size    : ''
+
+            vm.elements.forEach(function(e){
+                temp[e] = '';
             });
+
+            vm.layers.push(temp);
         };
         OrderFormData.apply(vm);
     }
 
-    function PrintCtrl(OrderFormData, StateFactory, CakeFlavors, FrostingFlavors, LayerSizes){
-        var vm        = this;
-        vm.layerItems = ['size', 'cake', 'frosting'];
-        vm.cake       = CakeFlavors.getFlavors();
-        vm.frosting   = FrostingFlavors.getFlavors();
-        vm.size       = LayerSizes.getSizes();
-        vm.total      = 0;
-        vm.isPayPal   = function(){
+    function PrintCtrl(OrderFormData, StateFactory, LayerElements){
+        var vm      = this;
+        vm.elements = LayerElements.getElements();
+        vm.cake     = LayerElements.CakeFlavors.getFlavors();
+        vm.frosting = LayerElements.FrostingFlavors.getFlavors();
+        vm.size     = LayerElements.LayerSizes.getSizes();
+        vm.total    = 0;
+        vm.isPayPal = function(){
             return vm.payment == 'PayPal';
         };
         StateFactory.getStates()

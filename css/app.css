@@ -92,6 +92,7 @@
 html,
 body {
   margin: 0;
+    overflow: hidden;
   padding: 0;
 }
 main {
@@ -139,13 +140,11 @@ form .element select:focus {
   margin: 0;
   outline: none;
 }
-
 form .element label {
     font-family: 'Mate SC', serif;
     font-weight: 400;
     text-transform: lowercase;
 }
-
 form .element .ng-dirty.ng-invalid + [ng-messages] {
     color: #A81712;
     font-family: 'Mate SC', serif;

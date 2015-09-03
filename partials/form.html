@@ -114,37 +114,17 @@
             </div>
             <div style="margin: auto 0;">No personal checks.</div>
         </div>
-        <!--Size-->
-        <div class="element" flex-sm="100" flex-md="33" ng-repeat-start="layer in order.layers" ng-form="layersRepeat">
-            <label>Size</label>
-            <div class="button custom-select">
-                <select ng-model="layer.size" required ng-change="order.save();"
-                        ng-options="size.id as size.name for size in order.layerSizes"></select>
-            </div>
-            <div ng-messages="layersRepeat.size.$error" ng-show="layersRepeat.size.$dirty">
-                <div ng-messages-include="./partials/errors.html"></div>
-            </div>
-        </div>
-        <!--Cake Flavor-->
-        <div class="element" flex-sm="100" flex-md="33">
-            <label>Cake Flavor</label>
-            <div class="button custom-select">
-                <select ng-model="layer.cake" required ng-change="order.save();"
-                        ng-options="cake.id as cake.name for cake in order.cakeFlavors"></select>
-            </div>
-            <div ng-messages="layersRepeat.cake.$error" ng-show="layersRepeat.cake.$dirty">
-                <div ng-messages-include="./partials/errors.html"></div>
-            </div>
-        </div>
-        <!--Frosting Flavor-->
-        <div class="element" flex-sm="100" flex-md="33" ng-repeat-end>
-            <label>Frosting Flavor</label>
-            <div class="button custom-select">
-                <select ng-model="layer.frosting" required ng-change="order.save();"
-                        ng-options="frosting.id as frosting.name for frosting in order.frostingFlavors"></select>
-            </div>
-            <div ng-messages="layersRepeat.frosting.$error" ng-show="layersRepeat.frosting.$dirty">
-                <div ng-messages-include="./partials/errors.html"></div>
+        <div class="layerWrapper" flex flex-sm="100" layout="row" layout-wrap ng-repeat="layer in order.layers">
+            <div class="element" flex-sm="100" flex-md="33" ng-repeat="element in order.elements">
+                <!--{{element}}-->
+                <label class="capitalize">{{element}}</label>
+                <div class="button custom-select">
+                    <select ng-model="layer[element]" required ng-change="order.save();"
+                            ng-options="option.id as option.name for option in order[element]"></select>
+                </div>
+                <div ng-messages="layers[element].$error" ng-show="layers[element].$dirty">
+                    <div ng-messages-include="./partials/errors.html"></div>
+                </div>
             </div>
         </div>
     </div>

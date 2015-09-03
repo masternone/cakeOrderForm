@@ -10,9 +10,9 @@
     <div flex-sm="15" ng-show="print.isPayPal();" Pay-Pal-Icon></div>
     <div flex-sm="100" flex layout="row" flex-wrap ng-repeat="layer in print.layers">
         <div flex-sm="100">Layer {{$index + 1}}:</div>
-        <div flex-sm="100" flex layout="row" flex-wrap ng-repeat="item in print.layerItems">
-            <div flex-sm="25" offset-sm="15">{{print[item][layer[item]].name}}</div>
-            <div flex-sm="10" class="text-right">{{print[item][layer[item]].display}}</div>
+        <div flex-sm="100" flex layout="row" flex-wrap ng-repeat="element in print.elements">
+            <div flex-sm="25" offset-sm="15">{{print[element][layer[element]].name}}</div>
+            <div flex-sm="10" class="text-right">{{print[element][layer[element]].display}}</div>
             <div flex-sm="50">&nbsp;</div>
         </div>
     </div>
