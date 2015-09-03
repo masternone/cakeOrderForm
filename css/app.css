@@ -145,7 +145,8 @@ form .element label {
     font-weight: 400;
     text-transform: lowercase;
 }
-form .element .ng-dirty.ng-invalid + [ng-messages] {
+
+form .element [ng-messages] {
     color: #A81712;
     font-family: 'Mate SC', serif;
     font-weight: 300;
@@ -501,7 +502,8 @@ form .element select {
 form .element [type="radio"] {
   width: auto;
 }
-form .element .ng-dirty.ng-invalid + [ng-messages] {
+
+form .element [ng-messages] {
   font-size: 0.8334em;
 }
 #addLayerWrapper {

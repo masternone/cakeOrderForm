@@ -13,7 +13,7 @@
             <input name="firstName" ng-model="order.firstName" required minlength="3" maxlength="30"
                    ng-blur="order.save();">
 
-            <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$dirty">
+            <div ng-messages="orderForm.firstName.$error" ng-show="orderForm.firstName.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -23,7 +23,7 @@
             <input name="lastName" ng-model="order.lastName" required minlength="3" maxlength="30"
                    ng-blur="order.save();">
 
-            <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$dirty">
+            <div ng-messages="orderForm.lastName.$error" ng-show="orderForm.lastName.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <label>Email</label>
             <input name="email" ng-model="order.email" type="email" required ng-blur="order.save();">
 
-            <div ng-messages="orderForm.email.$error" ng-show="orderForm.email.$dirty">
+            <div ng-messages="orderForm.email.$error" ng-show="orderForm.email.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             <label>Phone Number</label>
             <input name="phoneNum" ng-model="order.phoneNum" type="tel" required phone-valid ng-blur="order.save();">
 
-            <div ng-messages="orderForm.phoneNum.$error" ng-show="orderForm.phoneNum.$dirty">
+            <div ng-messages="orderForm.phoneNum.$error" ng-show="orderForm.phoneNum.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -53,7 +53,7 @@
             <input name="addressOne" ng-model="order.addressOne" required minlength="3" maxlength="30"
                    ng-blur="order.save();">
 
-            <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$dirty">
+            <div ng-messages="orderForm.addressOne.$error" ng-show="orderForm.addressOne.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -67,7 +67,7 @@
             <label>City</label>
             <input name="city" ng-model="order.city" required minlength="3" maxlength="60" ng-blur="order.save();">
 
-            <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$dirty">
+            <div ng-messages="orderForm.city.$error" ng-show="orderForm.city.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 <select ng-model="order.state" required ng-change="order.save();"
                         ng-options="state.id as state.abbreviation for state in order.states"></select>
             </div>
-            <div ng-messages="orderForm.state.$error" ng-show="orderForm.state.$dirty">
+            <div ng-messages="orderForm.state.$error" ng-show="orderForm.state.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -89,7 +89,7 @@
             <input name="zipcode" ng-model="order.zipcode" required zipcode-valid minlength="5" maxlength="10"
                    ng-blur="order.save();">
 
-            <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$dirty">
+            <div ng-messages="orderForm.zipcode.$error" ng-show="orderForm.zipcode.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
         </div>
@@ -109,20 +109,28 @@
                     <div Pay-Pal-Icon></div>
                 </label>
             </div>
-            <div ng-messages="orderForm.payment.$error" ng-show="orderForm.payment.$dirty">
+            <div ng-messages="orderForm.payment.$error" ng-show="orderForm.payment.$touched">
                 <div ng-messages-include="./partials/errors.html"></div>
             </div>
             <div style="margin: auto 0;">No personal checks.</div>
         </div>
-        <div class="layerWrapper" flex flex-sm="100" layout="row" layout-wrap ng-repeat="layer in order.layers">
+        <div class="layerWrapper" flex flex-sm="100" layout="row" flex-wrap ng-repeat="layer in order.layers"
+             ng-form="layerElements">
             <div class="element" flex-sm="100" flex-md="33" ng-repeat="element in order.elements">
                 <!--{{element}}-->
                 <label class="capitalize">{{element}}</label>
                 <div class="button custom-select">
-                    <select ng-model="layer[element]" required ng-change="order.save();"
+                    <select name="{{element}}" ng-model="layer[element]" required ng-change="order.save();"
                             ng-options="option.id as option.name for option in order[element]"></select>
                 </div>
-                <div ng-messages="layers[element].$error" ng-show="layers[element].$dirty">
+                <div ng-messages="layerElements[element].$error" ng-show="layerElements[element].$touched">
+                    <div ng-messages-include="./partials/errors.html"></div>
+                </div>
+                <input name="{{element + 'Other'}}" ng-model="layer[element + 'Other']" ng-blur="order.save();"
+                       ng-required="order[element][layer[element]].name=='Other'"
+                       ng-show="order[element][layer[element]].name=='Other'">
+                <div ng-messages="layerElements[element + 'Other'].$error"
+                     ng-show="layerElements[element + 'Other'].$touched">
                     <div ng-messages-include="./partials/errors.html"></div>
                 </div>
             </div>
